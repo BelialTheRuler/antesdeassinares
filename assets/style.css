@@ -1,6 +1,9 @@
 /* ============================================================
-   ANTES DE ASSINARES — brutalismo maximalista
-   BORDAS GROSSAS. SOMBRAS DURAS. CORES ÁCIDAS. TIPOGRAFIA GRANDE.
+   ANTES DE ASSINARES — editorial com tinta
+
+   Régua fina separa; tinta grossa é rara e por isso salta. Um bloco sólido
+   por página (o veredicto), um botão sólido, e o ácido só onde a marca fala.
+   Maiúsculas apenas em etiquetas de 4 palavras ou menos.
    Tokens semânticos → suporte completo a dark mode.
    ============================================================ */
 
@@ -20,7 +23,6 @@
   --blue: #255ad6;      /* escurecido: #2f6bff dava 3.9:1 em links (AA pede 4.5) */
   --yellow: #ffd60a;
   --on-bright: #101010; /* texto sobre fundos brilhantes (ácido/amarelo/rosa) */
-  --on-blue: #f4f4f2;   /* texto sobre azul — inverte no escuro, onde o azul clareia */
 
   /* superfícies de componente — pastéis que invertem no escuro */
   --pros-bg: #e9ffd6;
@@ -30,8 +32,15 @@
   --ph-bg-b: #f6f7fb;
   --ph-fg: #4f46e5;
 
-  --border: 3px solid var(--line);
-  --shadow: 6px 6px 0 var(--line);
+  /* Régua fina para estrutura. A borda grossa e a sombra dura deixaram de ser
+     o defeito: estavam em cards, navegação, botões, badges e rodapé ao mesmo
+     tempo, e um efeito que está em tudo deixa de ser um efeito. Agora a régua
+     separa, e a tinta grossa fica para os DOIS sítios que têm de saltar. */
+  --rule: #d8d6d1;
+  --hairline: 1px solid var(--rule);
+  --border: 3px solid var(--line);   /* 5 sítios, e só estes: CTA, veredicto,
+                                        banner de cookies e as duas imagens */
+  --shadow: 6px 6px 0 var(--line);   /* 3 sítios: veredicto e as duas imagens */
 
   --font-display: "Space Grotesk", "Helvetica Neue", Arial, sans-serif;
   --font-mono: "Space Mono", "Courier New", monospace;
@@ -41,7 +50,7 @@
      menos 1.25x entre passos, para a hierarquia se ler sem ler o texto.
      Texto secundário distingue-se por cor (--muted) e peso, não por tamanho. */
   --t-label: 13px;   /* mono em maiúsculas, etiquetas curtas (≤4 palavras) */
-  --t-body: 17px;    /* TODO o texto corrido: prose, cards, rodapé, formulários */
+  --t-body: 18px;    /* TODO o texto corrido: prose, cards, rodapé, formulários */
   --t-h3: 22px;
   --t-h2: 28px;
 }
@@ -55,12 +64,12 @@ html.dark {
   --muted: #9aa0a6;
   /* azul mais claro p/ contraste AA em texto pequeno sobre fundo escuro */
   --blue: #8ab0ff;
-  --on-blue: #101010;
   --pros-bg: #1c2a13;
   --cons-bg: #2a1420;
   --ph-bg-a: #232736;
   --ph-bg-b: #171a26;
   --ph-fg: #a8b3e0;
+  --rule: #2e2e2e;
 }
 
 * { box-sizing: border-box; }
@@ -80,8 +89,10 @@ body {
 /* A grelha de linhas que aqui estava competia com o grão de papel logo abaixo,
    duas texturas a fazer o mesmo trabalho. Fica o grão. */
 
-/* grão de papel — textura sutil sobre tudo */
+/* Grão desligado: numa página calma competia com o texto. O ficheiro fica
+   porque a textura pode voltar se o mundo visual voltar a ser denso. */
 body::after {
+  display: none;
   content: "";
   position: fixed;
   inset: 0;
@@ -99,9 +110,9 @@ a { color: var(--fg); }
 /* Parada, não em loop: uma afirmação que passa a correr é uma afirmação que
    ninguém lê. Envolve em vez de cortar quando o ecrã é estreito. */
 .ticker {
-  background: var(--block);
-  color: var(--block-fg);
-  border-bottom: var(--border);
+  background: transparent;
+  color: var(--muted);
+  border-bottom: var(--hairline);
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -116,7 +127,7 @@ a { color: var(--fg); }
   padding: 6px 20px;
 }
 
-.ticker span::before { content: "★ "; color: var(--acid); }
+.ticker span::before { content: "★ "; color: var(--muted); }
 
 /* ---------- Header ---------- */
 .site-header {
@@ -124,7 +135,7 @@ a { color: var(--fg); }
   top: 0;
   z-index: 60;
   background: var(--bg);
-  border-bottom: var(--border);
+  border-bottom: var(--hairline);
 }
 
 .site-header .inner {
@@ -145,7 +156,6 @@ a { color: var(--fg); }
      de empurrar a navegação para fora do ecrã. Teto = --t-h2. */
   font-size: clamp(20px, 5.2vw, 28px);
   letter-spacing: -0.03em;
-  text-transform: uppercase;
   color: var(--fg);
   text-decoration: none;
   line-height: 1;
@@ -156,12 +166,10 @@ a { color: var(--fg); }
 }
 
 .brand span {
+  /* o realce ácido é a marca — fica, mas sem borda nem sombra à volta */
   background: var(--acid);
   color: var(--on-bright);
-  border: 2px solid var(--line);
-  box-shadow: 3px 3px 0 var(--line);
-  padding: 2px 8px;
-  margin-left: 2px;
+  padding: 0 6px;
 }
 
 .header-right {
@@ -174,35 +182,22 @@ a { color: var(--fg); }
 .site-nav { display: flex; gap: 10px; flex-wrap: wrap; }
 
 .site-nav a {
-  font-family: var(--font-mono);
-  font-size: var(--t-label);
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 500;
   color: var(--fg);
   text-decoration: none;
-  border: 2px solid var(--line);
-  background: var(--card);
-  box-shadow: 3px 3px 0 var(--line);
-  padding: 8px 14px;
+  padding: 8px 6px;
   min-height: 44px;
   display: inline-flex;
   align-items: center;
-  transition: transform 0.08s, box-shadow 0.08s, background 0.08s;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.12s, color 0.12s;
 }
 
-.site-nav a:hover {
-  transform: translate(-2px, -2px);
-  box-shadow: 5px 5px 0 var(--line);
-  background: var(--acid);
-  color: var(--on-bright);
-}
+.site-nav a:hover { border-bottom-color: var(--rule); }
 
-.site-nav a.active {
-  background: var(--block);
-  color: var(--block-fg);
-  box-shadow: 3px 3px 0 var(--pink);
-}
+.site-nav a.active { font-weight: 700; border-bottom-color: var(--fg); }
 
 /* botões de ferramentas (dark mode + língua) */
 .header-tools { display: flex; gap: 10px; }
@@ -211,13 +206,10 @@ a { color: var(--fg); }
   font-family: var(--font-mono);
   font-size: var(--t-label);
   font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  color: var(--fg);
+  color: var(--muted);
   text-decoration: none;
-  border: 2px solid var(--line);
-  background: var(--card);
-  box-shadow: 3px 3px 0 var(--line);
+  border: var(--hairline);
+  background: transparent;
   padding: 8px 12px;
   min-height: 44px;
   min-width: 44px;
@@ -226,15 +218,10 @@ a { color: var(--fg); }
   justify-content: center;
   line-height: 1;
   cursor: pointer;
-  transition: transform 0.08s, box-shadow 0.08s, background 0.08s;
+  transition: border-color 0.12s, color 0.12s;
 }
 
-.tool-btn:hover {
-  transform: translate(-2px, -2px);
-  box-shadow: 5px 5px 0 var(--line);
-  background: var(--acid);
-  color: var(--on-bright);
-}
+.tool-btn:hover { color: var(--fg); border-color: var(--fg); }
 
 /* ---------- Layout ---------- */
 .wrap { max-width: 1000px; margin: 0 auto; padding: 0 24px; }
@@ -245,11 +232,10 @@ main { padding: 56px 0 80px; }
 .hero {
   position: relative;
   padding: 72px 0 64px;
-  border-bottom: var(--border);
-  background:
-    radial-gradient(circle at 85% 20%, rgba(255, 61, 129, 0.18), transparent 40%),
-    radial-gradient(circle at 10% 85%, rgba(200, 255, 77, 0.35), transparent 45%),
-    var(--bg);
+  /* Dois gradientes radiais e uma estrela a rodar competiam com o h1, que é
+     a única coisa que o visitante precisa de ler acima da dobra. */
+  border-bottom: var(--hairline);
+  background: var(--bg);
   overflow: hidden;
 }
 
@@ -260,19 +246,15 @@ main { padding: 56px 0 80px; }
   font-size: 150px;
   line-height: 1;
   color: var(--pink);
-  animation: spin 14s linear infinite;
+  display: none;   /* ornamento retirado com os gradientes do hero */
   user-select: none;
-  opacity: 0.85;
   pointer-events: none;
 }
-
-@keyframes spin { to { transform: rotate(360deg); } }
 
 .hero h1 {
   font-family: var(--font-display);
   font-size: clamp(2.6rem, 7vw, 5.2rem);
   font-weight: 700;
-  text-transform: uppercase;
   letter-spacing: -0.03em;
   line-height: 0.95;
   margin: 0 0 22px;
@@ -319,17 +301,15 @@ main { padding: 56px 0 80px; }
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  color: var(--on-bright);
-  border: 2px solid var(--line);
+  color: var(--fg);
+  border: var(--hairline);
   padding: 7px 12px;
-  box-shadow: 4px 4px 0 var(--line);
   user-select: none;
   z-index: 2;
 }
 
-.sticker-pink { background: var(--pink); transform: rotate(-7deg); }
-.sticker-acid { background: var(--acid); transform: rotate(5deg); }
-.sticker-blue { background: var(--blue); color: var(--on-blue); transform: rotate(-4deg); }
+/* As variantes de cor dos stickers desapareceram com a passagem calma: as três
+   ficaram iguais, por isso a distinção vive só na classe base. */
 
 /* ---------- Botões ---------- */
 .btn {
@@ -341,9 +321,8 @@ main { padding: 56px 0 80px; }
   letter-spacing: 0.01em;
   color: var(--on-bright);
   text-decoration: none;
-  border: 3px solid var(--line);
+  border: 2px solid var(--line);
   background: var(--acid);
-  box-shadow: 5px 5px 0 var(--line);
   padding: 15px 26px;
   min-height: 44px;
   cursor: pointer;
@@ -351,8 +330,6 @@ main { padding: 56px 0 80px; }
 }
 
 .btn:hover {
-  transform: translate(-3px, -3px);
-  box-shadow: 8px 8px 0 var(--line);
   background: var(--yellow);
 }
 
@@ -371,7 +348,6 @@ h2.block-title {
   font-family: var(--font-display);
   font-size: clamp(1.8rem, 4vw, 2.8rem);
   font-weight: 700;
-  text-transform: uppercase;
   letter-spacing: -0.02em;
   line-height: 1.05;      /* 45px com entrelinha de corpo (1.55) parecia por definir */
   text-wrap: balance;
@@ -379,7 +355,7 @@ h2.block-title {
   /* A régua fica por baixo, não ao lado: em flex o título era um item anónimo
      e encolhia até cortar palavras. */
   padding-bottom: 16px;
-  border-bottom: var(--border);
+  border-bottom: var(--hairline);
 }
 
 /* ---------- Cards ---------- */
@@ -392,24 +368,21 @@ h2.block-title {
 
 .card {
   position: relative;
-  background: var(--card);
-  border: var(--border);
-  box-shadow: var(--shadow);
-  padding: 24px;
+  background: transparent;
+  border-top: var(--hairline);
+  padding: 26px 0 0;
   display: flex;
   flex-direction: column;
   gap: 10px;
-  transition: transform 0.1s, box-shadow 0.1s, background 0.1s;
 }
 
 .card::before {
   content: "";
   position: absolute;
-  top: 0;
+  top: -1px;
   left: 0;
-  right: 0;
-  height: 12px;
-  border-bottom: 2px solid var(--line);
+  width: 44px;
+  height: 2px;
 }
 
 .card:nth-child(3n+1)::before { background: var(--acid); }
@@ -417,8 +390,7 @@ h2.block-title {
 .card:nth-child(3n+3)::before { background: var(--blue); }
 
 .card:hover {
-  transform: translate(-4px, -4px);
-  box-shadow: 10px 10px 0 var(--line);
+  transform: none;
 }
 
 .card h2,
@@ -428,7 +400,6 @@ h2.block-title {
   font-size: var(--t-h3);
   font-weight: 700;
   letter-spacing: -0.01em;
-  text-transform: uppercase;
   line-height: 1.3;
   text-wrap: balance;
   margin: 0;
@@ -443,10 +414,8 @@ h2.block-title {
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: var(--block-fg);
-  background: var(--block);
-  border: 2px solid var(--line);
-  box-shadow: 2px 2px 0 var(--pink);
+  color: var(--muted);
+  background: transparent;
   padding: 4px 10px;
 }
 
@@ -471,8 +440,6 @@ h2.block-title {
 }
 
 .card > a:last-child:hover {
-  transform: translate(-2px, -2px);
-  box-shadow: 5px 5px 0 var(--line);
   background: var(--acid);
   color: var(--on-bright);
 }
@@ -488,7 +455,6 @@ main.wrap > h1 {
   font-family: var(--font-display);
   font-size: clamp(2rem, 5vw, 3.4rem);
   font-weight: 700;
-  text-transform: uppercase;
   letter-spacing: -0.02em;
   line-height: 1;
   text-wrap: balance;
@@ -506,7 +472,6 @@ main.wrap > h1 {
   font-family: var(--font-display);
   font-size: var(--t-h2);
   font-weight: 700;
-  text-transform: uppercase;
   letter-spacing: -0.01em;
   /* Mais espaço acima do que abaixo: o título pertence ao que vem a seguir. */
   margin: 52px 0 14px;
@@ -514,10 +479,10 @@ main.wrap > h1 {
   /* Tinha uma barra vertical rosa e grossa à esquerda — o tell mais
      reconhecível de interface gerada por IA. A régua editorial por baixo faz o
      mesmo trabalho de separar secções, na linguagem do resto do site. */
-  border-bottom: var(--border);
+  border-bottom: var(--hairline);
 }
 
-.prose h3 { font-size: var(--t-h3); font-weight: 700; text-transform: uppercase; margin: 30px 0 10px; }
+.prose h3 { font-size: var(--t-h3); font-weight: 700; margin: 30px 0 10px; }
 
 .prose p, .prose li { color: var(--fg); }
 
@@ -589,14 +554,14 @@ main.wrap > h1 {
   font-family: var(--font-mono);
   font-size: var(--t-body);
   letter-spacing: 0.04em;
-  color: var(--on-bright);
-  border: 2px dashed var(--line);
-  background: var(--yellow);
+  color: var(--fg);
+  border: 1px dashed var(--rule);
+  background: transparent;
   padding: 8px 14px;
   margin-bottom: 24px;
 }
 
-.disclosure a { color: var(--on-bright); font-weight: 700; }
+.disclosure a { color: var(--fg); font-weight: 700; }
 
 /* ---------- CTA ---------- */
 .cta {
@@ -641,7 +606,7 @@ main.wrap > h1 {
 @media (max-width: 640px) { .pc { grid-template-columns: 1fr; } }
 
 .pc div {
-  border: var(--border);
+  border: var(--hairline);
   padding: 20px;
 }
 
@@ -669,10 +634,10 @@ main.wrap > h1 {
 
 /* ---------- Newsletter ---------- */
 .newsletter {
-  border: var(--border);
-  background: var(--yellow);
-  box-shadow: var(--shadow);
-  padding: 30px;
+  border: var(--hairline);
+  background: transparent;
+  border-top: var(--hairline);
+  padding: 30px 0 0;
   margin: 48px 0 0;
 }
 
@@ -710,18 +675,12 @@ main.wrap > h1 {
   outline-offset: 3px;
 }
 
-/* Sobre rosa e amarelo o anel rosa perde-se — nesses casos vai a cor da linha. */
-.newsletter :focus-visible,
-.btn.on-dark:focus-visible,
-.sticker-pink:focus-visible {
-  outline-color: var(--line);
-}
-
-.newsletter input:focus-visible { box-shadow: 4px 4px 0 var(--line); }
+/* O botão principal é ácido; sobre ele o anel rosa perde-se. */
+.btn:focus-visible { outline-color: var(--line); }
 
 /* ---------- Footer ---------- */
 .site-footer {
-  border-top: var(--border);
+  border-top: var(--hairline);
   background: var(--block);
   color: var(--block-fg);
   padding: 44px 0;
@@ -831,7 +790,7 @@ main.wrap > h1 {
 .related {
   margin: 44px 0 0;
   padding-top: 22px;
-  border-top: var(--border);
+  border-top: var(--hairline);
 }
 
 .related h2 {
@@ -901,17 +860,18 @@ main.wrap > h1 {
   animation: ink-wipe 620ms cubic-bezier(0.16, 1, 0.3, 1) 220ms both;
 }
 
-/* Os cards registam: a sombra imprime-se e o cartão assenta o deslocamento. */
-@keyframes ink-register {
-  from {
-    transform: translate(6px, 6px);
-    box-shadow: 0 0 0 var(--line);
-  }
+/* Os cards registam: a régua desenha-se e o conteúdo assenta. Antes era a
+   sombra dura a imprimir-se — deixou de fazer sentido quando os cards
+   deixaram de ter sombra. */
+@keyframes rule-draw {
+  from { transform: scaleX(0); }
+}
+@keyframes settle {
+  from { opacity: 0; transform: translateY(8px); }
 }
 
-.card.is-registered {
-  animation: ink-register 380ms cubic-bezier(0.16, 1, 0.3, 1) both;
-}
+.card.is-registered { animation: settle 380ms cubic-bezier(0.16, 1, 0.3, 1) both; }
+.card.is-registered::before { animation: rule-draw 460ms cubic-bezier(0.16, 1, 0.3, 1) both; transform-origin: left; }
 
 /* Feedback que faltava: premir afunda o bloco no papel. O hover levantava-o e
    não havia nada a confirmar o clique. */
@@ -930,7 +890,8 @@ main.wrap > h1 {
 @media (prefers-reduced-motion: reduce) {
   .hero-deco,
   .hero h1 em,
-  .card.is-registered {
+  .card.is-registered,
+  .card.is-registered::before {
     animation: none !important;
   }
   a,

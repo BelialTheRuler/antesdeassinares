@@ -401,7 +401,7 @@ const HOME = {
     lede: "Sem listas genéricas. Sem afiliações escondidas. <strong>Testamos cada ferramenta</strong>, dizemos o que é bom, o que é mau, e para quem faz sentido.",
     ctaReviews: "Ver os reviews →",
     ctaGuides: "Ler os guias",
-    manifestoTitle: "NÃO FAZEMOS LISTAS DE «10 FERRAMENTAS». FAZEMOS TESTES.",
+    manifestoTitle: "Não fazemos listas de «10 ferramentas». Fazemos testes.",
     manifestoText: "A maioria dos sites de afiliados vende-te tudo. Nós apontamos o que falhou em cada ferramenta — porque é isso que te poupa dinheiro e nos dá credibilidade.",
     s1Title: "Três formatos, zero rodeios",
     s1Cards: [
@@ -432,7 +432,7 @@ const HOME = {
     lede: "No generic listicles. No hidden affiliations. <strong>We test every tool</strong>, tell you what's good, what's bad, and who it's for.",
     ctaReviews: "See the reviews →",
     ctaGuides: "Read the guides",
-    manifestoTitle: "WE DON'T DO «TOP 10» LISTICLES. WE TEST THINGS.",
+    manifestoTitle: "We don't do «top 10» listicles. We test things.",
     manifestoText: "Most affiliate sites try to sell you everything. We point out what failed in every tool — because that's what saves you money and earns us credibility.",
     s1Title: "Three formats, zero fluff",
     s1Cards: [
@@ -912,7 +912,6 @@ const CONTRAST_PAIRS = [
   { fg: "on-bright", bg: "acid", min: 4.5, what: "texto sobre ácido" },
   { fg: "on-bright", bg: "yellow", min: 4.5, what: "texto sobre amarelo" },
   { fg: "on-bright", bg: "pink", min: 4.5, what: "texto sobre rosa" },
-  { fg: "on-blue", bg: "blue", min: 4.5, what: "texto sobre azul (sticker)" },
   { fg: "fg", bg: "pros-bg", min: 4.5, what: "texto na caixa de prós" },
   { fg: "fg", bg: "cons-bg", min: 4.5, what: "texto na caixa de contras" },
   { fg: "muted-on-block", bg: "block", min: 4.5, what: "texto secundário em blocos de tinta" },
