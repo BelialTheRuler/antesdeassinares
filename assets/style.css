@@ -802,14 +802,72 @@ main.wrap > h1 {
   .wrap { padding: 0 16px; }
 }
 
-/* Acessibilidade: respeitar quem pede menos movimento (WCAG 2.3.3) */
+/* ---------- Movimento ----------
+   A metáfora é a prensa: as coisas assentam, não flutuam. As sombras duras do
+   sistema já são uma segunda passagem de tinta mal registada, e o movimento é
+   essa passagem a acontecer.
+
+   Regra que governa tudo aqui: o estado FINAL de cada animação é o estado
+   natural do elemento. Se o CSS de animação não correr, ou o JS falhar, a
+   página fica na mesma correta — nada de conteúdo escondido à espera de uma
+   classe que pode nunca chegar. */
+
+/* Momento focal, uma vez, só no hero: o realce entra como tinta a passar. */
+@keyframes ink-wipe {
+  from { clip-path: inset(0 100% 0 0); }
+  to   { clip-path: inset(0); }
+}
+
+.hero h1 em {
+  animation: ink-wipe 620ms cubic-bezier(0.16, 1, 0.3, 1) 220ms both;
+}
+
+/* Os cards registam: a sombra imprime-se e o cartão assenta o deslocamento. */
+@keyframes ink-register {
+  from {
+    transform: translate(6px, 6px);
+    box-shadow: 0 0 0 var(--line);
+  }
+}
+
+.card.is-registered {
+  animation: ink-register 380ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Feedback que faltava: premir afunda o bloco no papel. O hover levantava-o e
+   não havia nada a confirmar o clique. */
+.btn:active,
+.site-nav a:active,
+.tool-btn:active,
+.card > a:last-child:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 var(--line);
+  transition-duration: 60ms;
+}
+
+/* Acessibilidade: respeitar quem pede menos movimento (WCAG 2.3.3).
+   Menos movimento não é movimento nenhum: o feedback que confirma um clique
+   continua a existir, sem deslocação — muda a cor e a sombra, não a posição. */
 @media (prefers-reduced-motion: reduce) {
-  /* .ticker-inner desapareceu com o marquee — a faixa já não anima de todo. */
-  .hero-deco {
+  .hero-deco,
+  .hero h1 em,
+  .card.is-registered {
     animation: none !important;
   }
   a,
   button {
-    transition: none !important;
+    transition: background-color 0.12s, color 0.12s, box-shadow 0.12s !important;
+  }
+  a:hover,
+  button:hover,
+  .card:hover {
+    transform: none !important;
+  }
+  .btn:active,
+  .site-nav a:active,
+  .tool-btn:active,
+  .card > a:last-child:active {
+    transform: none;
+    box-shadow: 1px 1px 0 var(--line);
   }
 }

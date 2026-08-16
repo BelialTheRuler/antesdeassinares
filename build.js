@@ -156,6 +156,7 @@ function scripts(relPath, extra) {
     '  <script src="' + a + 'i18n.js"></script>\n' +
     '  <script src="' + a + 'darkmode.js"></script>\n' +
     '  <script src="' + a + 'cookie-banner.js"></script>\n' +
+    '  <script src="' + a + 'motion.js"></script>\n' +
     (extra ? '  <script src="' + a + extra + '"></script>\n' : "") +
     "</body>\n</html>\n"
   );
