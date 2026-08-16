@@ -30,8 +30,8 @@ function configValue(key) {
 }
 const siteUrl = (configValue("siteUrl") || "https://SEU-DOMINIO.pt").replace(/\/+$/, "");
 const contactEmail = configValue("contactEmail") || "ola@SEU-DOMINIO.pt";
-const brandName = configValue("brand") || "FerramentasIA";
-const brandTagline = configValue("tagline") || "Guias e reviews honestos de ferramentas de IA, em português";
+const brandName = configValue("brand") || "Antes de Assinares";
+const brandTagline = configValue("tagline") || "Reviews honestos de ferramentas de IA, testadas com conta paga";
 
 function programName(key) {
   const m = configSrc.match(new RegExp(key + ":\\s*\\{[\\s\\S]*?name:\\s*\"([^\"]+)\""));
@@ -175,6 +175,20 @@ function cookieBanner(lang) {
   );
 }
 
+/* Links internos entre artigos: escreve-se `[texto](slug)` no conteúdo e o
+   build resolve para o caminho certo, com a categoria e a língua corretas.
+   Existia texto a dizer "(temos review)" sem link nenhum para lá. */
+function linkify(text, lang) {
+  return String(text).replace(/\[([^\]]+)\]\(([a-z0-9-]+)\)/g, function (m, label, slug) {
+    const target = articles.find((a) => a.slug === slug);
+    if (!target) {
+      throw new Error('Link interno para um slug que não existe: "' + slug + '" (texto: "' + label + '")');
+    }
+    // as páginas de artigo vivem em <cat>/<slug>.html, logo o vizinho está a ../
+    return '<a href="../' + CATEGORY[target.category].folder + "/" + target.slug + '.html">' + label + "</a>";
+  });
+}
+
 function renderSection(sec, lang) {
   let out = "";
   if (sec.h2) out += "<h2>" + sec.h2[lang] + "</h2>\n";
@@ -195,10 +209,10 @@ function renderSection(sec, lang) {
   }
   if (sec.p) {
     const paras = Array.isArray(sec.p[lang]) ? sec.p[lang] : [sec.p[lang]];
-    out += paras.map((para) => "<p>" + para + "</p>\n").join("");
+    out += paras.map((para) => "<p>" + linkify(para, lang) + "</p>\n").join("");
   }
-  if (sec.ul) out += "<ul>\n" + sec.ul[lang].map((i) => "  <li>" + i + "</li>").join("\n") + "\n</ul>\n";
-  if (sec.blockquote) out += "<blockquote>" + sec.blockquote[lang] + "</blockquote>\n";
+  if (sec.ul) out += "<ul>\n" + sec.ul[lang].map((i) => "  <li>" + linkify(i, lang) + "</li>").join("\n") + "\n</ul>\n";
+  if (sec.blockquote) out += "<blockquote>" + linkify(sec.blockquote[lang], lang) + "</blockquote>\n";
   return out;
 }
 
@@ -208,16 +222,59 @@ function articlePage(article, lang) {
   const rel = (lang === "en" ? "en/" : "") + cat.folder + "/" + article.slug + ".html";
   const L = LANG[lang];
   const kind = article.category === "guia" ? "guide" : "article";
-  const title = article.title[lang] + " | FerramentasIA";
+  const title = article.title[lang] + " | " + brandName;
   const metaLine =
     lang === "pt"
       ? cat.meta.pt + " · Atualizado em " + article.updated.pt + " · Leitura: " + article.readMin + " min"
       : cat.meta.en + " · Updated " + article.updated.en + " · " + article.readMin + " min read";
 
+  /* O veredicto sobe para o topo. Estava em último, e o princípio do projeto é
+     "o veredicto antes do detalhe: o leitor decide sem ler o artigo todo".
+     Não é duplicado — é movido, e o resto do artigo passa a ser a prova. */
+  const verdictIdx = article.sections.findIndex(
+    (s) => s.h2 && (s.h2.pt === "Veredicto" || s.h2.en === "Verdict")
+  );
+  let verdict = "";
+  if (verdictIdx !== -1) {
+    const v = article.sections[verdictIdx];
+    const paras = Array.isArray(v.p[lang]) ? v.p[lang] : [v.p[lang]];
+    verdict =
+      '\n      <aside class="verdict">\n' +
+      "        <h2>" + v.h2[lang] + "</h2>\n" +
+      paras.map((p) => "        <p>" + linkify(p, lang) + "</p>\n").join("") +
+      "      </aside>\n";
+  }
+
   let sections = "";
-  article.sections.forEach((sec) => {
+  article.sections.forEach((sec, i) => {
+    if (i === verdictIdx) return;
     sections += renderSection(sec, lang);
   });
+
+  /* O artigo acabava no CTA de afiliado: quem não clicasse, saía. Agora há
+     passo seguinte — mesma categoria primeiro, porque quem lê uma review de voz
+     está a comparar vozes, não a mudar de assunto. */
+  const related = articles
+    .filter((a) => a.slug !== article.slug)
+    .sort((a, b) => {
+      const same = (x) => (x.category === article.category ? 0 : 1);
+      return same(a) - same(b) || (a.date < b.date ? 1 : -1);
+    })
+    .slice(0, 3);
+
+  const relatedBlock =
+    '\n      <nav class="related" aria-label="' + (lang === "pt" ? "Continuar a decidir" : "Keep deciding") + '">\n' +
+    "        <h2>" + (lang === "pt" ? "Continua a decidir" : "Keep deciding") + "</h2>\n" +
+    '        <ul>\n' +
+    related
+      .map(
+        (a) =>
+          '          <li><a href="../' + CATEGORY[a.category].folder + "/" + a.slug + '.html">' +
+          '<span class="related-kind">' + CATEGORY[a.category].tag[lang] + "</span>" +
+          a.title[lang] + "</a></li>"
+      )
+      .join("\n") +
+    "\n        </ul>\n      </nav>\n";
 
   let cta = "";
   if (article.cta) {
@@ -244,6 +301,7 @@ function articlePage(article, lang) {
     L.disclosure[kind].replace("{link}", '<a href="../sobre.html">' + L.disclosure.linkText + "</a>") +
     "</span>\n" +
     "\n      <p>" + article.intro[lang] + "</p>\n" +
+    verdict +
     (article.imgSrc
       ? '\n      <img class="article-img" src="' +
         (lang === "en" ? "../../" : "../") +
@@ -258,6 +316,7 @@ function articlePage(article, lang) {
     sections +
     cta +
     '\n      <p class="muted" style="font-size:var(--t-body);"><em>' + article.note[lang] + "</em></p>\n" +
+    relatedBlock +
     "    </article>\n" +
     "  </main>\n" +
     "\n  <div data-footer></div>" +
@@ -272,7 +331,7 @@ function listingPage(kind, lang) {
   const rel = (lang === "en" ? "en/" : "") + kind + "/index.html";
   const items = articles.filter((a) => (isReviews ? a.category !== "guia" : a.category === "guia"));
 
-  const title = lang === "pt" ? (isReviews ? "Reviews | FerramentasIA" : "Guias | FerramentasIA") : isReviews ? "Reviews | FerramentasIA" : "Guides | FerramentasIA";
+  const title = (lang === "pt" ? (isReviews ? "Reviews" : "Guias") : (isReviews ? "Reviews" : "Guides")) + " | " + brandName;
   const h1 = lang === "pt" ? (isReviews ? "Reviews" : "Guias") : isReviews ? "Reviews" : "Guides";
   const intro =
     lang === "pt"
@@ -329,7 +388,7 @@ function listingPage(kind, lang) {
 /* ---------- Home ---------- */
 const HOME = {
   pt: {
-    title: "FerramentasIA — Guias e reviews honestos de ferramentas de IA em português",
+    title: "Antes de Assinares — Reviews honestos de ferramentas de IA, em português",
     meta: "Reviews honestas e guias práticos de ferramentas de IA (escrita, voz, vídeo) para criadores de conteúdo e pequenas empresas — em português.",
     og: "Reviews honestas e guias práticos de ferramentas de IA para criadores e pequenas empresas.",
     heroDeco: "✦",
@@ -360,7 +419,7 @@ const HOME = {
     newsletterErr: "Email inválido — verifica e tenta outra vez.",
   },
   en: {
-    title: "FerramentasIA — Honest reviews and guides of AI tools",
+    title: "Antes de Assinares — Honest reviews of AI tools, tested on a paid account",
     meta: "Honest reviews and practical guides of AI tools (writing, voice, video) for content creators and small businesses.",
     og: "We test every tool, tell you what's good, what's bad, and who it's for.",
     heroDeco: "✦",
@@ -502,10 +561,10 @@ function homePage(lang) {
 /* ---------- Sobre ---------- */
 const SOBRE = {
   pt: {
-    title: "Sobre e política de divulgação | FerramentasIA",
+    title: "Sobre e política de divulgação | " + brandName,
     meta: "Quem somos, como testamos as ferramentas e a nossa política de links de afiliados (disclosure).",
     og: "Quem somos, como testamos as ferramentas e a nossa política de links de afiliados (disclosure).",
-    h1: "Sobre o FerramentasIA",
+    h1: "Quem somos e como testamos",
     sections: [
       { h2: "Quem somos", p: "Somos um pequeno projeto português que testa ferramentas de IA e publica reviews e guias honestos, em português. Não somos afiliados de ninguém que não tenhamos usado — e dizemos quando uma ferramenta <em>não</em> vale a pena, mesmo que isso signifique menos comissão." },
       { h2: "Como testamos", ul: ["Testamos com contas reais (gratuitas ou pagas) — nunca só com demos.", "Publicamos prós e contras, incluindo o que correu mal.", "Atualizamos os preços e o veredicto regularmente.", "Separamos opinião de facto: se é opinião, dizemos que é."] },
@@ -515,10 +574,10 @@ const SOBRE = {
     ],
   },
   en: {
-    title: "About and disclosure policy | FerramentasIA",
+    title: "About and disclosure policy | " + brandName,
     meta: "Who we are, how we test tools and our affiliate link (disclosure) policy.",
     og: "Who we are, how we test tools and our affiliate link (disclosure) policy.",
-    h1: "About FerramentasIA",
+    h1: "Who we are and how we test",
     sections: [
       { h2: "Who we are", p: "We're a small project that tests AI tools and publishes honest reviews and guides. We don't affiliate with anyone we haven't used — and we tell you when a tool is <em>not</em> worth it, even if that means less commission." },
       { h2: "How we test", ul: ["We test with real accounts (free or paid) — never just demos.", "We publish pros and cons, including what went wrong.", "We update pricing and verdicts regularly.", "We separate opinion from fact: if it's opinion, we say so."] },
@@ -691,10 +750,10 @@ function brandedPng() {
   c.rect(0, 0, 26, H - 1, black);
   c.rect(W - 27, 0, W - 1, H - 1, black);
   // título
-  const t1 = "FERRAMENTAS";
+  const t1 = "ANTES DE";
   c.text(t1, (W - textWidth(t1, 16)) / 2, 80, 16, black);
-  const t2 = "IA";
-  c.text(t2, (W - textWidth(t2, 30)) / 2, 235, 30, black);
+  const t2 = "ASSINARES";
+  c.text(t2, (W - textWidth(t2, 14)) / 2, 235, 14, black);
   const t3 = "REVIEWS HONESTOS";
   c.text(t3, (W - textWidth(t3, 8)) / 2, 480, 8, black);
   const t4 = "HONESTO. TESTADO 2026.";

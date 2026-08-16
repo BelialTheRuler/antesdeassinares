@@ -1,18 +1,18 @@
 /* ============================================================
-   FERRAMENTAS IA — Configuração central de links de afiliado
+   ANTES DE ASSINARES — Configuração central de links de afiliado
    ------------------------------------------------------------
    SUBSTITUI cada "SEU_ID" pelo teu link de afiliado real
    (obtido no painel de cada programa após aprovação).
    Os CTAs do site usam estas URLs automaticamente.
    ============================================================ */
 window.AFFILIATE_CONFIG = {
-  brand: "FerramentasIA",
-  tagline: "Guias e reviews honestos de ferramentas de IA, em português",
+  brand: "Antes de Assinares",
+  tagline: "Reviews honestos de ferramentas de IA, testadas com conta paga",
   contactEmail: "ola.ferramentasia@gmail.com", // ← e-mail dedicado (Gmail). Mudar quando tiverem domínio próprio.
 
   // URL base do site (sem barra final). Usado pelo build.js para gerar
   // canonical + hreflang + og:url absolutos. GitHub Pages (domínio grátis).
-  siteUrl: "https://belialtheruler.github.io/ferramentasia", // ← mudar se o repo tiver outro nome
+  siteUrl: "https://belialtheruler.github.io/antesdeassinares", // ← mudar se o repo tiver outro nome
 
   programs: {
     elevenlabs: {

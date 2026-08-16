@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://belialtheruler.github.io/ferramentasia/sitemap.xml
+Sitemap: https://belialtheruler.github.io/antesdeassinares/sitemap.xml

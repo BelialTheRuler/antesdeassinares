@@ -1,5 +1,5 @@
 /* ============================================================
-   FERRAMENTASIA — brutalismo maximalista
+   ANTES DE ASSINARES — brutalismo maximalista
    BORDAS GROSSAS. SOMBRAS DURAS. CORES ÁCIDAS. TIPOGRAFIA GRANDE.
    Tokens semânticos → suporte completo a dark mode.
    ============================================================ */
@@ -141,7 +141,9 @@ a { color: var(--fg); }
 .brand {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: var(--t-h2);
+  /* "Antes de Assinares" é bem mais largo que a marca antiga: encolhe em vez
+     de empurrar a navegação para fora do ecrã. Teto = --t-h2. */
+  font-size: clamp(20px, 5.2vw, 28px);
   letter-spacing: -0.03em;
   text-transform: uppercase;
   color: var(--fg);
@@ -800,6 +802,83 @@ main.wrap > h1 {
   .hero { padding: 48px 0 44px; }
   .site-header .inner { padding: 12px 16px; }
   .wrap { padding: 0 16px; }
+}
+
+/* ---------- Veredicto no topo ----------
+   O leitor chega com uma pergunta concreta e tem de poder decidir sem ler o
+   artigo todo. O resto da página passa a ser a prova, não o caminho. */
+.prose .verdict {
+  background: var(--acid);
+  color: var(--on-bright);
+  border: var(--border);
+  box-shadow: var(--shadow);
+  padding: 26px 28px;
+  margin: 28px 0 34px;
+}
+
+.prose .verdict h2 {
+  margin: 0 0 12px;
+  padding: 0;
+  border: 0;
+  font-size: var(--t-h3);
+}
+
+.prose .verdict p { color: var(--on-bright); }
+.prose .verdict p:last-child { margin-bottom: 0; }
+
+/* ---------- Continua a decidir ----------
+   O artigo acabava no CTA de afiliado: quem não clicasse, saía. */
+.related {
+  margin: 44px 0 0;
+  padding-top: 22px;
+  border-top: var(--border);
+}
+
+.related h2 {
+  margin: 0 0 16px;
+  padding: 0;
+  border: 0;
+  font-size: var(--t-h3);
+}
+
+/* o bloco vive dentro de .prose, que dá marcador ▸ e recuo a todos os <li> */
+.related ul { list-style: none; margin: 0; padding: 0; }
+.related li { margin: 0; }
+.related li::marker { content: ""; }
+
+.related li + li { margin-top: 10px; }
+
+.related a {
+  display: flex;
+  gap: 12px;
+  align-items: baseline;
+  flex-wrap: wrap;
+  font-weight: 700;
+  text-decoration: none;
+  border: 2px solid var(--line);
+  background: var(--card);
+  box-shadow: 3px 3px 0 var(--line);
+  padding: 14px 16px;
+  transition: transform 0.08s, box-shadow 0.08s, background 0.08s;
+}
+
+.related a:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 5px 5px 0 var(--line);
+  background: var(--acid);
+  color: var(--on-bright);
+}
+
+.related-kind {
+  font-family: var(--font-mono);
+  font-size: var(--t-label);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background: var(--block);
+  color: var(--block-fg);
+  border: 2px solid var(--line);
+  padding: 2px 8px;
+  flex: none;
 }
 
 /* ---------- Movimento ----------

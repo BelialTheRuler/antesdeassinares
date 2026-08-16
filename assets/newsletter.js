@@ -85,10 +85,10 @@
 
     // provider não configurado → backup local (importar quando ligares o MailerLite)
     try {
-      var leads = JSON.parse(localStorage.getItem("ferramentasia_leads") || "[]");
+      var leads = JSON.parse(localStorage.getItem("antesdeassinares_leads") || "[]");
       if (leads.indexOf(email) === -1) {
         leads.push(email);
-        localStorage.setItem("ferramentasia_leads", JSON.stringify(leads));
+        localStorage.setItem("antesdeassinares_leads", JSON.stringify(leads));
       }
     } catch (_) {}
     show(true, okText);

@@ -3,7 +3,7 @@
 (function () {
   "use strict";
 
-  var KEY = "ferramentasia_theme";
+  var KEY = "antesdeassinares_theme";
   var ICONS = { dark: "☀", light: "☾" };
 
   // O botão é só um ícone, por isso o aria-label é o único nome que o leitor de

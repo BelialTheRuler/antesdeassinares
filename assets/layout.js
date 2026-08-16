@@ -57,8 +57,8 @@
   };
 
   var FOOTER = {
-    pt: { tagline: "Guias e reviews honestos de ferramentas de IA, em português.", about: "Sobre e disclosure" },
-    en: { tagline: "Honest reviews and guides of AI tools, in Portuguese and English.", about: "About & disclosure" },
+    pt: { tagline: "Reviews honestos de ferramentas de IA, testadas com conta paga.", about: "Sobre e disclosure" },
+    en: { tagline: "Honest reviews of AI tools, tested on a paid account.", about: "About & disclosure" },
   };
 
   // Faixa de afirmações. Já foi um marquee em loop infinito, com os items
@@ -95,7 +95,7 @@
     return (
       ticker(lang) +
       '<header class="site-header"><div class="inner">' +
-      '<a class="brand" href="' + rootPath() + 'index.html">Ferramentas<span>IA</span></a>' +
+      '<a class="brand" href="' + rootPath() + 'index.html">Antes de <span>Assinares</span></a>' +
       '<div class="header-right">' +
       '<nav class="site-nav">' + nav(lang) + "</nav>" +
       '<div class="header-tools">' +
@@ -112,7 +112,7 @@
     var f = FOOTER[lang] || FOOTER.pt;
     return (
       '<footer class="site-footer"><div class="inner">' +
-      "<div><strong>Ferramentas<span>IA</span></strong><br>" + f.tagline + "</div>" +
+      "<div><strong>Antes de <span>Assinares</span></strong><br>" + f.tagline + "</div>" +
       '<div><a href="' + rootPath() + 'sobre.html">' + f.about + "</a><br>" +
       '<span id="footer-email"></span></div>' +
       "</div></footer>"

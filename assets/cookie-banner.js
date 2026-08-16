@@ -23,7 +23,7 @@
   }
 
   function consentKey() {
-    return "ferramentasia_consent_" + lang();
+    return "antesdeassinares_consent_" + lang();
   }
 
   function show() {
