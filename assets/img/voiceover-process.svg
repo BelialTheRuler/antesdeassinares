@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="1080" viewBox="0 0 640 1080" role="img" aria-labelledby="t d">
+  <title id="t">Processo de voiceover com IA em 5 passos</title>
+  <desc id="d">Guião, escolha da voz, ajustes, geração e exportação — do zero ao voiceover em menos de uma hora.</desc>
+
+  <!-- fundo papel -->
+  <rect width="640" height="1080" fill="#fff6e8"/>
+
+  <!-- título -->
+  <rect x="40" y="40" width="560" height="70" fill="#000"/>
+  <text x="60" y="87" font-family="'Space Grotesk', Arial, sans-serif" font-size="34" font-weight="700" fill="#c8ff4d">VOICEOVER COM IA</text>
+
+  <!-- passo 1 -->
+  <rect x="60" y="150" width="520" height="140" fill="#ffd60a" stroke="#000" stroke-width="4"/>
+  <rect x="76" y="166" width="488" height="108" fill="#ffd60a" stroke="#000" stroke-width="4"/>
+  <text x="100" y="215" font-family="'Space Mono', monospace" font-size="22" font-weight="700" fill="#000">PASSO 1 · GUIÃO</text>
+  <text x="100" y="250" font-family="'Space Grotesk', Arial, sans-serif" font-size="24" font-weight="500" fill="#000">Escreve como quem fala, não como quem lê</text>
+
+  <!-- seta 1 -->
+  <path d="M320 290 L320 330" stroke="#000" stroke-width="6"/>
+  <path d="M305 322 L320 342 L335 322 Z" fill="#000"/>
+
+  <!-- passo 2 -->
+  <rect x="60" y="350" width="520" height="140" fill="#c8ff4d" stroke="#000" stroke-width="4"/>
+  <rect x="76" y="366" width="488" height="108" fill="#c8ff4d" stroke="#000" stroke-width="4"/>
+  <text x="100" y="415" font-family="'Space Mono', monospace" font-size="22" font-weight="700" fill="#000">PASSO 2 · VOZ</text>
+  <text x="100" y="450" font-family="'Space Grotesk', Arial, sans-serif" font-size="24" font-weight="500" fill="#000">Escolhe PT-PT e ouve com a TUA frase</text>
+
+  <!-- seta 2 -->
+  <path d="M320 490 L320 530" stroke="#000" stroke-width="6"/>
+  <path d="M305 522 L320 542 L335 522 Z" fill="#000"/>
+
+  <!-- passo 3 -->
+  <rect x="60" y="550" width="520" height="140" fill="#ff3d81" stroke="#000" stroke-width="4"/>
+  <rect x="76" y="566" width="488" height="108" fill="#ff3d81" stroke="#000" stroke-width="4"/>
+  <text x="100" y="615" font-family="'Space Mono', monospace" font-size="22" font-weight="700" fill="#fff">PASSO 3 · AJUSTA</text>
+  <text x="100" y="650" font-family="'Space Grotesk', Arial, sans-serif" font-size="24" font-weight="500" fill="#fff">Estabilidade · velocidade · pontuação</text>
+
+  <!-- seta 3 -->
+  <path d="M320 690 L320 730" stroke="#000" stroke-width="6"/>
+  <path d="M305 722 L320 742 L335 722 Z" fill="#000"/>
+
+  <!-- passo 4 -->
+  <rect x="60" y="750" width="520" height="140" fill="#2f6bff" stroke="#000" stroke-width="4"/>
+  <rect x="76" y="766" width="488" height="108" fill="#2f6bff" stroke="#000" stroke-width="4"/>
+  <text x="100" y="815" font-family="'Space Mono', monospace" font-size="22" font-weight="700" fill="#fff">PASSO 4 · GERA</text>
+  <text x="100" y="850" font-family="'Space Grotesk', Arial, sans-serif" font-size="24" font-weight="500" fill="#fff">Itera só no parágrafo problemático</text>
+
+  <!-- seta 4 -->
+  <path d="M320 890 L320 930" stroke="#000" stroke-width="6"/>
+  <path d="M305 922 L320 942 L335 922 Z" fill="#000"/>
+
+  <!-- passo 5 -->
+  <rect x="60" y="950" width="520" height="90" fill="#000"/>
+  <text x="100" y="1002" font-family="'Space Mono', monospace" font-size="22" font-weight="700" fill="#c8ff4d">PASSO 5 · EXPORTA</text>
+  <text x="100" y="1028" font-family="'Space Grotesk', Arial, sans-serif" font-size="20" font-weight="500" fill="#fff">MP3 / WAV → editor de vídeo</text>
+
+  <!-- nota final -->
+  <text x="60" y="1060" font-family="'Space Mono', monospace" font-size="18" fill="#000">MENOS DE 60 MINUTOS · SEM MICROFONE</text>
+</svg>

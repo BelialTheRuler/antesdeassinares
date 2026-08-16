@@ -1,0 +1,7 @@
+# Este repo serve o GitHub Pages a partir da raiz: tudo o que aqui está vai para
+# a web. Ficheiros de trabalho local ficam de fora.
+node_modules/
+snapshots/
+*.log
+.DS_Store
+Thumbs.db

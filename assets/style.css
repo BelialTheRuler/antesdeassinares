@@ -1,0 +1,815 @@
+/* ============================================================
+   FERRAMENTASIA — brutalismo maximalista
+   BORDAS GROSSAS. SOMBRAS DURAS. CORES ÁCIDAS. TIPOGRAFIA GRANDE.
+   Tokens semânticos → suporte completo a dark mode.
+   ============================================================ */
+
+:root {
+  /* luz */
+  --bg: #f4f4f2;        /* papel neutro (croma 0) — era #f2efe6, um creme quente */
+  --fg: #101010;        /* texto principal */
+  --line: #101010;      /* cor de bordas e sombras */
+  --block: #101010;     /* blocos sólidos (ticker, footer, CTA, blockquote) */
+  --block-fg: #f4f4f2;  /* texto sobre blocos sólidos */
+  --card: #ffffff;      /* fundo de cards e botões claros */
+  --muted: #5a5f66;
+
+  /* acentos (constantes em ambos os modos) */
+  --acid: #c8ff4d;
+  --pink: #ff3d81;
+  --blue: #255ad6;      /* escurecido: #2f6bff dava 3.9:1 em links (AA pede 4.5) */
+  --yellow: #ffd60a;
+  --on-bright: #101010; /* texto sobre fundos brilhantes (ácido/amarelo/rosa) */
+  --on-blue: #f4f4f2;   /* texto sobre azul — inverte no escuro, onde o azul clareia */
+
+  /* superfícies de componente — pastéis que invertem no escuro */
+  --pros-bg: #e9ffd6;
+  --cons-bg: #ffe3ec;
+  --muted-on-block: #9aa0a6; /* texto secundário DENTRO de blocos de tinta */
+  --ph-bg-a: #eef2ff;        /* placeholder de imagem das reviews */
+  --ph-bg-b: #f6f7fb;
+  --ph-fg: #4f46e5;
+
+  --border: 3px solid var(--line);
+  --shadow: 6px 6px 0 var(--line);
+
+  --font-display: "Space Grotesk", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "Space Mono", "Courier New", monospace;
+
+  /* Escala de papéis. Havia 17 tamanhos entre 11.5px e 26px — 13/13.5/14/14.5
+     lado a lado não são papéis diferentes, são ruído. Quatro papéis, com pelo
+     menos 1.25x entre passos, para a hierarquia se ler sem ler o texto.
+     Texto secundário distingue-se por cor (--muted) e peso, não por tamanho. */
+  --t-label: 13px;   /* mono em maiúsculas, etiquetas curtas (≤4 palavras) */
+  --t-body: 17px;    /* TODO o texto corrido: prose, cards, rodapé, formulários */
+  --t-h3: 22px;
+  --t-h2: 28px;
+}
+
+/* escuro — inverte fundo/texto; blocos sólidos permanecem pretos */
+html.dark {
+  --bg: #141414;
+  --fg: #f4f4f2;
+  --line: #f4f4f2;
+  --card: #1e1e1e;
+  --muted: #9aa0a6;
+  /* azul mais claro p/ contraste AA em texto pequeno sobre fundo escuro */
+  --blue: #8ab0ff;
+  --on-blue: #101010;
+  --pros-bg: #1c2a13;
+  --cons-bg: #2a1420;
+  --ph-bg-a: #232736;
+  --ph-bg-b: #171a26;
+  --ph-fg: #a8b3e0;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: var(--font-display);
+  color: var(--fg);
+  background: var(--bg);
+  line-height: 1.55;
+  font-size: var(--t-body);
+  transition: background-color 0.2s, color 0.2s;
+}
+
+/* A grelha de linhas que aqui estava competia com o grão de papel logo abaixo,
+   duas texturas a fazer o mesmo trabalho. Fica o grão. */
+
+/* grão de papel — textura sutil sobre tudo */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.06;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='0.6'/%3E%3C/svg%3E");
+}
+
+::selection { background: var(--acid); color: var(--on-bright); }
+
+a { color: var(--fg); }
+
+/* ---------- Faixa de afirmações ---------- */
+/* Parada, não em loop: uma afirmação que passa a correr é uma afirmação que
+   ninguém lê. Envolve em vez de cortar quando o ecrã é estreito. */
+.ticker {
+  background: var(--block);
+  color: var(--block-fg);
+  border-bottom: var(--border);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 4px 16px;
+}
+
+.ticker span {
+  font-family: var(--font-mono);
+  font-size: var(--t-label);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 6px 20px;
+}
+
+.ticker span::before { content: "★ "; color: var(--acid); }
+
+/* ---------- Header ---------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 60;
+  background: var(--bg);
+  border-bottom: var(--border);
+}
+
+.site-header .inner {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 14px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.brand {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--t-h2);
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  color: var(--fg);
+  text-decoration: none;
+  line-height: 1;
+  white-space: nowrap;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.brand span {
+  background: var(--acid);
+  color: var(--on-bright);
+  border: 2px solid var(--line);
+  box-shadow: 3px 3px 0 var(--line);
+  padding: 2px 8px;
+  margin-left: 2px;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.site-nav { display: flex; gap: 10px; flex-wrap: wrap; }
+
+.site-nav a {
+  font-family: var(--font-mono);
+  font-size: var(--t-label);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--fg);
+  text-decoration: none;
+  border: 2px solid var(--line);
+  background: var(--card);
+  box-shadow: 3px 3px 0 var(--line);
+  padding: 8px 14px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  transition: transform 0.08s, box-shadow 0.08s, background 0.08s;
+}
+
+.site-nav a:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 5px 5px 0 var(--line);
+  background: var(--acid);
+  color: var(--on-bright);
+}
+
+.site-nav a.active {
+  background: var(--block);
+  color: var(--block-fg);
+  box-shadow: 3px 3px 0 var(--pink);
+}
+
+/* botões de ferramentas (dark mode + língua) */
+.header-tools { display: flex; gap: 10px; }
+
+.tool-btn {
+  font-family: var(--font-mono);
+  font-size: var(--t-label);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--fg);
+  text-decoration: none;
+  border: 2px solid var(--line);
+  background: var(--card);
+  box-shadow: 3px 3px 0 var(--line);
+  padding: 8px 12px;
+  min-height: 44px;
+  min-width: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  cursor: pointer;
+  transition: transform 0.08s, box-shadow 0.08s, background 0.08s;
+}
+
+.tool-btn:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 5px 5px 0 var(--line);
+  background: var(--acid);
+  color: var(--on-bright);
+}
+
+/* ---------- Layout ---------- */
+.wrap { max-width: 1000px; margin: 0 auto; padding: 0 24px; }
+
+main { padding: 56px 0 80px; }
+
+/* ---------- Hero ---------- */
+.hero {
+  position: relative;
+  padding: 72px 0 64px;
+  border-bottom: var(--border);
+  background:
+    radial-gradient(circle at 85% 20%, rgba(255, 61, 129, 0.18), transparent 40%),
+    radial-gradient(circle at 10% 85%, rgba(200, 255, 77, 0.35), transparent 45%),
+    var(--bg);
+  overflow: hidden;
+}
+
+.hero-deco {
+  position: absolute;
+  top: 18px;
+  right: 4%;
+  font-size: 150px;
+  line-height: 1;
+  color: var(--pink);
+  animation: spin 14s linear infinite;
+  user-select: none;
+  opacity: 0.85;
+  pointer-events: none;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2.6rem, 7vw, 5.2rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -0.03em;
+  line-height: 0.95;
+  margin: 0 0 22px;
+  max-width: 900px;
+}
+
+.hero h1 em {
+  font-style: normal;
+  color: var(--on-bright);
+  background: var(--acid);
+  box-shadow: inset 0 -8px 0 rgba(16, 16, 16, 0.25);
+  padding: 0 6px;
+}
+
+.hero .lede {
+  font-size: var(--t-h3);
+  max-width: 640px;
+  margin: 0 0 34px;
+  font-weight: 500;
+}
+
+.hero .lede strong {
+  color: var(--on-bright);
+  background: var(--yellow);
+  box-shadow: inset 0 -4px 0 rgba(16, 16, 16, 0.3);
+  padding: 0 4px;
+}
+
+.hero-ctas { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 6px; }
+
+/* stickers */
+/* Fila no fluxo, acima do h1. Estiveram em position:absolute com top/left
+   fixos e caíam por cima do título mal ele crescia. */
+.stickers {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 0 0 22px;
+}
+
+.sticker {
+  font-family: var(--font-mono);
+  font-size: var(--t-label);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--on-bright);
+  border: 2px solid var(--line);
+  padding: 7px 12px;
+  box-shadow: 4px 4px 0 var(--line);
+  user-select: none;
+  z-index: 2;
+}
+
+.sticker-pink { background: var(--pink); transform: rotate(-7deg); }
+.sticker-acid { background: var(--acid); transform: rotate(5deg); }
+.sticker-blue { background: var(--blue); color: var(--on-blue); transform: rotate(-4deg); }
+
+/* ---------- Botões ---------- */
+.btn {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--t-body);
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  color: var(--on-bright);
+  text-decoration: none;
+  border: 3px solid var(--line);
+  background: var(--acid);
+  box-shadow: 5px 5px 0 var(--line);
+  padding: 15px 26px;
+  min-height: 44px;
+  cursor: pointer;
+  transition: transform 0.08s, box-shadow 0.08s, background 0.08s;
+}
+
+.btn:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: 8px 8px 0 var(--line);
+  background: var(--yellow);
+}
+
+.btn:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0 var(--line); }
+
+.btn.secondary { background: var(--card); color: var(--fg); }
+
+.btn.on-dark { background: var(--pink); }
+
+/* ---------- Secções ---------- */
+/* O `.section-label` que aqui vivia era uma etiqueta minúscula em maiúsculas
+   espaçadas, com um número 00/01/02 ao lado, por cima de cada h2 — e o texto
+   repetia o título de baixo. A régua que o acompanhava era boa: passou para o
+   próprio título, que agora marca a secção sem precisar de anúncio prévio. */
+h2.block-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  line-height: 1.05;      /* 45px com entrelinha de corpo (1.55) parecia por definir */
+  text-wrap: balance;
+  margin: 4px 0 26px;
+  /* A régua fica por baixo, não ao lado: em flex o título era um item anónimo
+     e encolhia até cortar palavras. */
+  padding-bottom: 16px;
+  border-bottom: var(--border);
+}
+
+/* ---------- Cards ---------- */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 26px;
+  margin: 30px 0;
+}
+
+.card {
+  position: relative;
+  background: var(--card);
+  border: var(--border);
+  box-shadow: var(--shadow);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: transform 0.1s, box-shadow 0.1s, background 0.1s;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 12px;
+  border-bottom: 2px solid var(--line);
+}
+
+.card:nth-child(3n+1)::before { background: var(--acid); }
+.card:nth-child(3n+2)::before { background: var(--pink); }
+.card:nth-child(3n+3)::before { background: var(--blue); }
+
+.card:hover {
+  transform: translate(-4px, -4px);
+  box-shadow: 10px 10px 0 var(--line);
+}
+
+.card h2,
+.card h3 {
+  /* h2 nas listagens (filhos do h1), h3 na home (há h2 de secção) */
+  font-family: var(--font-display);
+  font-size: var(--t-h3);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  line-height: 1.3;
+  text-wrap: balance;
+  margin: 0;
+}
+
+.card p { margin: 0; color: var(--fg); font-size: var(--t-body); flex: 1; }
+
+.card .tag {
+  align-self: flex-start;
+  font-family: var(--font-mono);
+  font-size: var(--t-label);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--block-fg);
+  background: var(--block);
+  border: 2px solid var(--line);
+  box-shadow: 2px 2px 0 var(--pink);
+  padding: 4px 10px;
+}
+
+.card .tag.green { background: var(--acid); color: var(--on-bright); box-shadow: 2px 2px 0 var(--line); }
+
+.card > a:last-child {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: var(--t-label);
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--fg);
+  border: 2px solid var(--line);
+  background: var(--bg);
+  box-shadow: 3px 3px 0 var(--line);
+  padding: 8px 12px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  width: max-content;
+  transition: transform 0.08s, box-shadow 0.08s, background 0.08s;
+}
+
+.card > a:last-child:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 5px 5px 0 var(--line);
+  background: var(--acid);
+  color: var(--on-bright);
+}
+
+/* ---------- Artigo ---------- */
+/* 660px a 17px ≈ 72ch — dentro da janela de leitura 65-75ch */
+article.prose { max-width: 660px; }
+
+/* O h1 das listagens (fora de .prose) ficava no default do browser: 2em com a
+   entrelinha do corpo herdada, ou seja, um título sem estilo nenhum. */
+.prose h1,
+main.wrap > h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3.4rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  text-wrap: balance;
+  margin: 0 0 12px;
+}
+
+.prose .meta {
+  font-family: var(--font-mono);
+  font-size: var(--t-body);
+  letter-spacing: 0.05em;
+  margin-bottom: 26px;
+}
+
+.prose h2 {
+  font-family: var(--font-display);
+  font-size: var(--t-h2);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  /* Mais espaço acima do que abaixo: o título pertence ao que vem a seguir. */
+  margin: 52px 0 14px;
+  padding-bottom: 10px;
+  /* Tinha uma barra vertical rosa e grossa à esquerda — o tell mais
+     reconhecível de interface gerada por IA. A régua editorial por baixo faz o
+     mesmo trabalho de separar secções, na linguagem do resto do site. */
+  border-bottom: var(--border);
+}
+
+.prose h3 { font-size: var(--t-h3); font-weight: 700; text-transform: uppercase; margin: 30px 0 10px; }
+
+.prose p, .prose li { color: var(--fg); }
+
+.prose p a, .prose li a { color: var(--blue); font-weight: 600; }
+
+.prose ul, .prose ol { padding-left: 26px; }
+
+.prose li { margin: 8px 0; }
+
+.prose ul li::marker { content: "▸ "; color: var(--pink); font-weight: 700; }
+.prose ol li::marker { font-family: var(--font-mono); font-weight: 700; color: var(--blue); }
+
+.prose .placeholder-img {
+  width: 100%;
+  border: var(--border);
+  box-shadow: var(--shadow);
+  margin: 22px 0;
+}
+
+/* dark mode: o gradiente claro do placeholder (inline no build) destoa do tema */
+/* o placeholder usa os tokens --ph-*, que já invertem sozinhos — a regra
+   html.dark com !important que aqui estava deixou de ser precisa */
+
+.prose .article-img {
+  display: block;
+  width: 100%;
+  border: var(--border);
+  box-shadow: var(--shadow);
+  margin: 22px 0;
+  background: var(--paper);
+}
+
+.newsletter-msg {
+  font-family: var(--font-mono);
+  font-size: var(--t-body);
+  font-weight: 700;
+  padding: 8px 12px;
+  border: 3px solid var(--line);
+}
+.newsletter-msg.ok {
+  background: var(--acid);
+  color: var(--on-bright);
+}
+/* era #fff sobre rosa: 3.37:1, reprova AA. A guarda do build não o via porque
+   a cor estava fixa em vez de num token, e o audit não o via porque a mensagem
+   só existe depois de submeter o formulário. */
+.newsletter-msg.err {
+  background: var(--pink);
+  color: var(--on-bright);
+}
+
+.prose blockquote {
+  margin: 26px 0;
+  padding: 18px 22px;
+  background: var(--block);
+  color: var(--block-fg);
+  border: 2px solid var(--line);
+  box-shadow: 6px 6px 0 var(--acid);
+  font-weight: 500;
+}
+
+.prose blockquote::before { content: "▲ "; color: var(--acid); }
+
+/* disclosure */
+.disclosure {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: var(--t-body);
+  letter-spacing: 0.04em;
+  color: var(--on-bright);
+  border: 2px dashed var(--line);
+  background: var(--yellow);
+  padding: 8px 14px;
+  margin-bottom: 24px;
+}
+
+.disclosure a { color: var(--on-bright); font-weight: 700; }
+
+/* ---------- CTA ---------- */
+.cta {
+  position: relative;
+  background: var(--block);
+  color: var(--block-fg);
+  border: var(--border);
+  box-shadow: 8px 8px 0 var(--pink);
+  padding: 34px 30px;
+  margin: 44px 0;
+  text-align: left;
+}
+
+.cta::before {
+  content: "✦";
+  position: absolute;
+  top: 14px;
+  right: 18px;
+  font-size: 40px;
+  color: var(--acid);
+}
+
+.cta h3 {
+  font-family: var(--font-display);
+  font-size: var(--t-h2);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  margin: 0 0 8px;
+  color: var(--acid);
+}
+
+.cta p { margin: 0 0 18px; color: var(--block-fg); font-size: var(--t-body); max-width: 520px; }
+
+.cta .muted { color: var(--muted-on-block); }
+
+.cta .btn { font-size: var(--t-body); }
+
+/* ---------- Prós / contras ---------- */
+.pc { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin: 26px 0; }
+
+@media (max-width: 640px) { .pc { grid-template-columns: 1fr; } }
+
+.pc div {
+  border: var(--border);
+  padding: 20px;
+}
+
+.pc .pros { background: var(--pros-bg); box-shadow: 5px 5px 0 var(--line); }
+.pc .cons { background: var(--cons-bg); box-shadow: 5px 5px 0 var(--line); }
+
+/* dark mode: fundos pastel claros tornam o texto branco ilegível */
+
+.pc h3 {
+  font-family: var(--font-mono);
+  font-size: var(--t-label);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin: 0 0 10px;
+  display: inline-block;
+  border: 2px solid var(--line);
+  padding: 4px 10px;
+}
+
+.pc .pros h4 { background: var(--acid); color: var(--on-bright); }
+.pc .cons h4 { background: var(--pink); color: var(--on-bright); }
+
+.pc ul { margin: 0; padding-left: 20px; }
+.pc li { margin: 6px 0; }
+
+/* ---------- Newsletter ---------- */
+.newsletter {
+  border: var(--border);
+  background: var(--yellow);
+  box-shadow: var(--shadow);
+  padding: 30px;
+  margin: 48px 0 0;
+}
+
+.newsletter h3 {
+  font-family: var(--font-display);
+  font-size: var(--t-h3);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  color: var(--on-bright);
+  margin: 0 0 6px;
+}
+
+.newsletter p { margin: 0 0 16px; font-weight: 500; color: var(--on-bright); }
+
+.newsletter form { display: flex; gap: 12px; justify-content: flex-start; flex-wrap: wrap; }
+
+.newsletter input[type="email"] {
+  font-family: var(--font-mono);
+  font-size: var(--t-body);
+  color: var(--fg);
+  padding: 14px 16px;
+  border: 3px solid var(--line);
+  background: var(--card);
+  box-shadow: 4px 4px 0 var(--line);
+  min-width: 260px;
+  flex: 1;
+}
+
+/* Foco. O anel do browser não pertence a nenhum sistema de design, e aqui
+   estava a ser apagado com `outline: none` no input sem substituto formal.
+   Um só anel, na linguagem do resto: traço duro, sem raio. */
+:focus-visible {
+  outline: 3px solid var(--pink);
+  outline-offset: 3px;
+}
+
+/* Sobre rosa e amarelo o anel rosa perde-se — nesses casos vai a cor da linha. */
+.newsletter :focus-visible,
+.btn.on-dark:focus-visible,
+.sticker-pink:focus-visible {
+  outline-color: var(--line);
+}
+
+.newsletter input:focus-visible { box-shadow: 4px 4px 0 var(--line); }
+
+/* ---------- Footer ---------- */
+.site-footer {
+  border-top: var(--border);
+  background: var(--block);
+  color: var(--block-fg);
+  padding: 44px 0;
+  font-size: var(--t-body);
+}
+
+.site-footer .inner {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.site-footer strong { font-family: var(--font-display); text-transform: uppercase; font-size: var(--t-h3); letter-spacing: -0.02em; }
+
+.site-footer strong span { color: var(--acid); }
+
+/* padding vertical leva o link dos 20px de altura aos 44px de alvo de toque */
+.site-footer a { color: var(--acid); font-family: var(--font-mono); font-size: var(--t-label); text-transform: uppercase; display: inline-block; padding: 12px 0; }
+
+.site-footer a:hover { background: var(--acid); color: var(--on-bright); }
+
+/* ---------- Cookie banner ---------- */
+#cookie-banner {
+  position: fixed;
+  left: 16px;
+  right: 16px;
+  bottom: 16px;
+  max-width: 620px;
+  margin: 0 auto;
+  background: var(--bg);
+  color: var(--fg);
+  border: var(--border);
+  box-shadow: 8px 8px 0 var(--pink);
+  padding: 20px 24px;
+  display: none;
+  z-index: 200;
+  font-size: var(--t-body);
+  line-height: 1.5;
+}
+
+#cookie-banner.show { display: block; }
+
+#cookie-banner p { margin: 0 0 14px; }
+
+#cookie-banner .row { display: flex; gap: 10px; justify-content: flex-end; }
+
+#cookie-banner button {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: var(--t-label);
+  text-transform: uppercase;
+  border: 2px solid var(--line);
+  color: var(--fg);
+  padding: 9px 16px;
+  min-height: 44px;
+  cursor: pointer;
+  box-shadow: 3px 3px 0 var(--line);
+}
+
+#cookie-banner .accept { background: var(--acid); color: var(--on-bright); }
+#cookie-banner .accept:hover { background: var(--yellow); }
+#cookie-banner .decline { background: var(--card); }
+#cookie-banner .decline:hover { background: var(--pink); color: var(--on-bright); }
+
+/* ---------- Utilidades ---------- */
+.muted { color: var(--muted); }
+.mt-1 { margin-top: 8px; }
+.mt-2 { margin-top: 16px; }
+.mt-3 { margin-top: 24px; }
+.center { text-align: center; }
+
+@media (max-width: 720px) {
+  .hero-deco { font-size: 90px; top: 10px; right: 6%; }
+  .hero { padding: 48px 0 44px; }
+  .site-header .inner { padding: 12px 16px; }
+  .wrap { padding: 0 16px; }
+}
+
+/* Acessibilidade: respeitar quem pede menos movimento (WCAG 2.3.3) */
+@media (prefers-reduced-motion: reduce) {
+  /* .ticker-inner desapareceu com o marquee — a faixa já não anima de todo. */
+  .hero-deco {
+    animation: none !important;
+  }
+  a,
+  button {
+    transition: none !important;
+  }
+}
