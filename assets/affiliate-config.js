@@ -8,7 +8,7 @@
 window.AFFILIATE_CONFIG = {
   brand: "Antes de Assinares",
   tagline: "Reviews honestos de ferramentas de IA, testadas com conta paga",
-  contactEmail: "ola.ferramentasia@gmail.com", // ← e-mail dedicado (Gmail). Mudar quando tiverem domínio próprio.
+  contactEmail: "belialdev.pro@protonmail.com", // ← contacto público. Mudar para ola@dominio.pt quando houver domínio.
 
   // URL base do site (sem barra final). Usado pelo build.js para gerar
   // canonical + hreflang + og:url absolutos. GitHub Pages (domínio grátis).

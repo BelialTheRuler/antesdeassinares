@@ -612,7 +612,6 @@ main.wrap > h1 {
   font-family: var(--font-display);
   font-size: var(--t-h2);
   font-weight: 700;
-  text-transform: uppercase;
   letter-spacing: -0.01em;
   margin: 0 0 8px;
   color: var(--acid);
@@ -669,7 +668,6 @@ main.wrap > h1 {
   font-family: var(--font-display);
   font-size: var(--t-h3);
   font-weight: 700;
-  text-transform: uppercase;
   letter-spacing: -0.01em;
   color: var(--on-bright);
   margin: 0 0 6px;
@@ -995,3 +993,29 @@ main.wrap > h1 {
 
 /* âncoras não podem cair atrás do cabeçalho fixo */
 .prose h2[id], .verdict h2[id] { scroll-margin-top: 88px; }
+
+/* ---------- Campo de formulário ----------
+   O placeholder desaparece assim que se escreve, por isso a instrução vive num
+   rótulo visível. O placeholder fica só com o EXEMPLO do formato. */
+.field { display: flex; flex-direction: column; gap: 6px; flex: 1; min-width: 240px; }
+
+.field-label {
+  font-family: var(--font-mono);
+  font-size: var(--t-label);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--block-fg);
+}
+
+.field input {
+  font-family: var(--font-mono);
+  font-size: var(--t-body);
+  padding: 14px 16px;
+  border: 2px solid var(--line);
+  background: var(--card);
+  color: var(--fg);
+  width: 100%;
+}
+
+.field input::placeholder { color: var(--muted); }

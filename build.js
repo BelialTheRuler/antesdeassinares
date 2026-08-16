@@ -441,8 +441,9 @@ const HOME = {
     ],
     s2Title: "O que acabámos de testar",
     newsletterTitle: "Recebe o guia gratuito: «5 ferramentas de IA para começar hoje»",
-    newsletterText: "Resumo mensal com o que testámos. Sem spam — prometido e assinado.",
-    newsletterPlaceholder: "o-teu@email.pt",
+    newsletterText: "Resumo mensal com o que testámos. Sem spam, e sais quando quiseres.",
+    newsletterLabel: "O teu email",
+    newsletterPlaceholder: "nome@exemplo.pt",
     newsletterAria: "O teu email para a newsletter",
     newsletterBtn: "Receber o guia",
     newsletterOk: "Recebido! Vamos avisar-te quando a lista estiver no ar.",
@@ -472,8 +473,9 @@ const HOME = {
     ],
     s2Title: "What we just tested",
     newsletterTitle: "Get the free guide: «5 AI tools to start with today»",
-    newsletterText: "A monthly summary of what we tested. No spam — promised and signed.",
-    newsletterPlaceholder: "your@email.com",
+    newsletterText: "A monthly summary of what we tested. No spam, unsubscribe anytime.",
+    newsletterLabel: "Your email",
+    newsletterPlaceholder: "name@example.com",
     newsletterAria: "Your email for the newsletter",
     newsletterBtn: "Get the guide",
     newsletterOk: "Got it! We'll let you know when the list is live.",
@@ -574,8 +576,11 @@ function homePage(lang) {
     '      <div class="cta">\n' +
     "        <h3>" + L.newsletterTitle + "</h3>\n" +
     "        <p>" + L.newsletterText + "</p>\n" +
-    '        <form id="newsletter-form" method="post" data-ok="' + L.newsletterOk + '" data-err="' + L.newsletterErr + '" style="display:flex; gap:12px; flex-wrap:wrap;">\n' +
-    '          <input type="email" name="email" placeholder="' + L.newsletterPlaceholder + '" aria-label="' + L.newsletterAria + '" required style="font-family:var(--font-mono); font-size:var(--t-body); padding:14px 16px; border:3px solid var(--line); background:var(--card); box-shadow:4px 4px 0 var(--pink); min-width:240px; flex:1;">\n' +
+    '        <form id="newsletter-form" method="post" data-ok="' + L.newsletterOk + '" data-err="' + L.newsletterErr + '" style="display:flex; gap:12px; flex-wrap:wrap; align-items:flex-end;">\n' +
+    '          <label class="field">\n' +
+    '            <span class="field-label">' + L.newsletterLabel + '</span>\n' +
+    '            <input type="email" name="email" placeholder="' + L.newsletterPlaceholder + '" autocomplete="email" required>\n' +
+    '          </label>\n' +
     '          <button class="btn on-dark" type="submit">' + L.newsletterBtn + "</button>\n" +
     '          <p class="newsletter-msg" aria-live="polite" style="flex-basis:100%; margin:4px 0 0;"></p>\n' +
     "        </form>\n" +
