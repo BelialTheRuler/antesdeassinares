@@ -29,7 +29,20 @@
   --cons-bg: #ffe3ec;
   --muted-on-block: #9aa0a6; /* texto secundário DENTRO de blocos de tinta */
   --surface: #eceae5;        /* faixa de secção — dá contentor sem caixa */
+  /* Uma só margem de página. O cabeçalho usava 1240px e o conteúdo 1000px, por
+     isso tudo abaixo do header ficava 120px mais para dentro do que a marca —
+     lia-se como "demasiado espaço nas laterais". A medida de leitura é
+     propriedade do bloco de texto (.prose), não do contentor. */
+  --container: 1240px;
   --wrap-pad: 24px;
+
+  /* Escala de espaço, base 4. Os intervalos deixam de ser valores avulsos. */
+  --s-1: 8px;
+  --s-2: 16px;
+  --s-3: 24px;
+  --s-4: 40px;
+  --s-5: 64px;
+  --s-6: 96px;
   --ph-bg-a: #eef2ff;        /* placeholder de imagem das reviews */
   --ph-bg-b: #f6f7fb;
   --ph-fg: #4f46e5;
@@ -124,9 +137,9 @@ a { color: var(--fg); }
 }
 
 .site-header .inner {
-  max-width: 1240px;
+  max-width: var(--container);
   margin: 0 auto;
-  padding: 14px 24px;
+  padding: 14px var(--wrap-pad);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -209,14 +222,14 @@ a { color: var(--fg); }
 .tool-btn:hover { color: var(--fg); border-color: var(--fg); }
 
 /* ---------- Layout ---------- */
-.wrap { max-width: 1000px; margin: 0 auto; padding: 0 var(--wrap-pad); }
+.wrap { max-width: var(--container); margin: 0 auto; padding: 0 var(--wrap-pad); }
 
-main { padding: 0 0 96px; }
+main { padding: 0 0 var(--s-6); }
 
 /* Faixa de secção: alterna a superfície para o olho perceber onde um bloco
    acaba e o outro começa. É o que dava falta abaixo do hero — tudo eram
    réguas de 1px do mesmo peso, e nada lia como contentor. */
-.band { padding: 72px 0; }
+.band { padding: var(--s-5) 0; }
 .band + .band { border-top: var(--hairline); }
 .band-tint {
   background: var(--surface);
@@ -361,7 +374,7 @@ h2.block-title {
 /* ---------- Cards ---------- */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 26px;
   margin: 30px 0;
 }
@@ -699,7 +712,7 @@ main.wrap > h1 {
 }
 
 .site-footer .inner {
-  max-width: 1240px;
+  max-width: var(--container);
   margin: 0 auto;
   padding: 0 24px;
   display: flex;
@@ -926,3 +939,59 @@ main.wrap > h1 {
     box-shadow: 1px 1px 0 var(--line);
   }
 }
+
+/* ---------- Artigo em duas colunas ----------
+   A coluna de leitura tem 660px dentro de um contentor de 1240. Em vez de
+   deixar o resto vazio, a direita leva o índice — numa review de 6-8 minutos
+   é o que mais falta. Abaixo de 1080px volta a uma coluna e o índice sobe
+   para cima do texto, onde continua a servir. */
+@media (min-width: 1080px) {
+  .article-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 660px) 1fr;
+    gap: var(--s-6);
+    align-items: start;
+  }
+  .article-layout .rail { position: sticky; top: 96px; }
+}
+
+.rail { padding-top: var(--s-2); }
+
+.toc h2 {
+  font-family: var(--font-mono);
+  font-size: var(--t-label);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+  font-weight: 700;
+  margin: 0 0 var(--s-2);
+  padding-bottom: var(--s-1);
+  border-bottom: var(--hairline);
+}
+
+.toc ul { list-style: none; margin: 0; padding: 0; }
+.toc li { margin: 0; }
+
+/* alvo de toque: o índice é navegação autónoma, não link inline — 44px */
+.toc a {
+  color: var(--fg);
+  text-decoration: none;
+  font-size: 15px;
+  line-height: 1.35;
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 4px 0;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.12s, color 0.12s;
+}
+
+.toc a:hover { color: var(--fg); border-bottom-color: var(--fg); }
+
+/* o índice é navegação, não corpo: abaixo do breakpoint fica um bloco discreto */
+@media (max-width: 1079px) {
+  .rail { border-top: var(--hairline); margin-top: var(--s-4); padding-top: var(--s-3); }
+}
+
+/* âncoras não podem cair atrás do cabeçalho fixo */
+.prose h2[id], .verdict h2[id] { scroll-margin-top: 88px; }

@@ -174,6 +174,16 @@ function cookieBanner(lang) {
   );
 }
 
+/* Âncora estável a partir do título da secção — alimenta o índice do artigo. */
+function slugify(text) {
+  return String(text)
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[̀-ͯ]/g, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
 /* Links internos entre artigos: escreve-se `[texto](slug)` no conteúdo e o
    build resolve para o caminho certo, com a categoria e a língua corretas.
    Existia texto a dizer "(temos review)" sem link nenhum para lá. */
@@ -190,7 +200,7 @@ function linkify(text, lang) {
 
 function renderSection(sec, lang) {
   let out = "";
-  if (sec.h2) out += "<h2>" + sec.h2[lang] + "</h2>\n";
+  if (sec.h2) out += '<h2 id="' + slugify(sec.h2[lang]) + '">' + sec.h2[lang] + "</h2>\n";
   if (sec.pc) {
     const prosLabel = lang === "pt" ? "Prós" : "Pros";
     const consLabel = lang === "pt" ? "Contras" : "Cons";
@@ -239,7 +249,7 @@ function articlePage(article, lang) {
     const paras = Array.isArray(v.p[lang]) ? v.p[lang] : [v.p[lang]];
     verdict =
       '\n      <aside class="verdict">\n' +
-      "        <h2>" + v.h2[lang] + "</h2>\n" +
+      '        <h2 id="veredicto">' + v.h2[lang] + "</h2>\n" +
       paras.map((p) => "        <p>" + linkify(p, lang) + "</p>\n").join("") +
       "      </aside>\n";
   }
@@ -249,6 +259,26 @@ function articlePage(article, lang) {
     if (i === verdictIdx) return;
     sections += renderSection(sec, lang);
   });
+
+  /* Índice do artigo. A coluna de leitura tem 660px dentro de um contentor de
+     1240 — em vez de deixar o resto vazio, a coluna da direita ganha o índice,
+     que numa review de 6-8 min é o que mais falta. Gerado das próprias secções:
+     zero manutenção. */
+  const tocItems = article.sections
+    .filter((sec, i) => sec.h2 && i !== verdictIdx)
+    .map((sec) => '        <li><a href="#' + slugify(sec.h2[lang]) + '">' + sec.h2[lang] + "</a></li>")
+    .join("\n");
+
+  const rail =
+    '\n    <aside class="rail">\n' +
+    '      <nav class="toc" aria-label="' + (lang === "pt" ? "Índice do artigo" : "Article contents") + '">\n' +
+    "        <h2>" + (lang === "pt" ? "Neste artigo" : "In this article") + "</h2>\n" +
+    "        <ul>\n" +
+    (verdictIdx !== -1
+      ? '          <li><a href="#veredicto">' + article.sections[verdictIdx].h2[lang] + "</a></li>\n"
+      : "") +
+    tocItems +
+    "\n        </ul>\n      </nav>\n    </aside>\n";
 
   /* O artigo acabava no CTA de afiliado: quem não clicasse, saía. Agora há
      passo seguinte — mesma categoria primeiro, porque quem lê uma review de voz
@@ -292,7 +322,7 @@ function articlePage(article, lang) {
     head(title, article.meta[lang], article.og[lang], "article", rel, lang, articleSchema(article, lang, rel)) +
     '<body data-page="' + cat.folder + '"' + L.bodyLang + ">\n" +
     "  <div data-header></div>\n" +
-    '\n  <main class="wrap">\n' +
+    '\n  <main class="wrap article-layout">\n' +
     '    <article class="prose">\n' +
     "      <h1>" + article.title[lang] + "</h1>\n" +
     '      <p class="meta">' + metaLine + "</p>\n" +
@@ -317,6 +347,7 @@ function articlePage(article, lang) {
     '\n      <p class="muted" style="font-size:var(--t-body);"><em>' + article.note[lang] + "</em></p>\n" +
     relatedBlock +
     "    </article>\n" +
+    rail +
     "  </main>\n" +
     "\n  <div data-footer></div>" +
     cookieBanner(lang) +
