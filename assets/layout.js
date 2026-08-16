@@ -99,8 +99,6 @@
       '<div class="header-right">' +
       '<nav class="site-nav">' + nav(lang) + "</nav>" +
       '<div class="header-tools">' +
-      // aria-label provisório — darkmode.js reescreve-o na língua da página
-      '<button id="dark-toggle" class="tool-btn" type="button" aria-label="Alternar modo escuro">☾</button>' +
       '<a id="lang-switch" class="tool-btn" href="#">EN</a>' +
       "</div>" +
       "</div>" +

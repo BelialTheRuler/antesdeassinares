@@ -28,6 +28,8 @@
   --pros-bg: #e9ffd6;
   --cons-bg: #ffe3ec;
   --muted-on-block: #9aa0a6; /* texto secundário DENTRO de blocos de tinta */
+  --surface: #eceae5;        /* faixa de secção — dá contentor sem caixa */
+  --wrap-pad: 24px;
   --ph-bg-a: #eef2ff;        /* placeholder de imagem das reviews */
   --ph-bg-b: #f6f7fb;
   --ph-fg: #4f46e5;
@@ -55,22 +57,6 @@
   --t-h2: 28px;
 }
 
-/* escuro — inverte fundo/texto; blocos sólidos permanecem pretos */
-html.dark {
-  --bg: #141414;
-  --fg: #f4f4f2;
-  --line: #f4f4f2;
-  --card: #1e1e1e;
-  --muted: #9aa0a6;
-  /* azul mais claro p/ contraste AA em texto pequeno sobre fundo escuro */
-  --blue: #8ab0ff;
-  --pros-bg: #1c2a13;
-  --cons-bg: #2a1420;
-  --ph-bg-a: #232736;
-  --ph-bg-b: #171a26;
-  --ph-fg: #a8b3e0;
-  --rule: #2e2e2e;
-}
 
 * { box-sizing: border-box; }
 
@@ -110,9 +96,8 @@ a { color: var(--fg); }
 /* Parada, não em loop: uma afirmação que passa a correr é uma afirmação que
    ninguém lê. Envolve em vez de cortar quando o ecrã é estreito. */
 .ticker {
-  background: transparent;
-  color: var(--muted);
-  border-bottom: var(--hairline);
+  background: var(--block);
+  color: var(--block-fg);
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -127,7 +112,7 @@ a { color: var(--fg); }
   padding: 6px 20px;
 }
 
-.ticker span::before { content: "★ "; color: var(--muted); }
+.ticker span::before { content: "★ "; color: var(--acid); }
 
 /* ---------- Header ---------- */
 .site-header {
@@ -224,9 +209,22 @@ a { color: var(--fg); }
 .tool-btn:hover { color: var(--fg); border-color: var(--fg); }
 
 /* ---------- Layout ---------- */
-.wrap { max-width: 1000px; margin: 0 auto; padding: 0 24px; }
+.wrap { max-width: 1000px; margin: 0 auto; padding: 0 var(--wrap-pad); }
 
-main { padding: 56px 0 80px; }
+main { padding: 0 0 96px; }
+
+/* Faixa de secção: alterna a superfície para o olho perceber onde um bloco
+   acaba e o outro começa. É o que dava falta abaixo do hero — tudo eram
+   réguas de 1px do mesmo peso, e nada lia como contentor. */
+.band { padding: 72px 0; }
+.band + .band { border-top: var(--hairline); }
+.band-tint {
+  background: var(--surface);
+  padding-left: var(--wrap-pad);
+  padding-right: var(--wrap-pad);
+  margin-left: calc(var(--wrap-pad) * -1);
+  margin-right: calc(var(--wrap-pad) * -1);
+}
 
 /* ---------- Hero ---------- */
 .hero {
@@ -253,12 +251,12 @@ main { padding: 56px 0 80px; }
 
 .hero h1 {
   font-family: var(--font-display);
-  font-size: clamp(2.6rem, 7vw, 5.2rem);
+  font-size: clamp(2.6rem, 8vw, 5.6rem);
   font-weight: 700;
-  letter-spacing: -0.03em;
-  line-height: 0.95;
+  letter-spacing: -0.045em;
+  line-height: 0.94;
   margin: 0 0 22px;
-  max-width: 900px;
+  max-width: 16ch;
 }
 
 .hero h1 em {
@@ -308,8 +306,10 @@ main { padding: 56px 0 80px; }
   z-index: 2;
 }
 
-/* As variantes de cor dos stickers desapareceram com a passagem calma: as três
-   ficaram iguais, por isso a distinção vive só na classe base. */
+.sticker { border-width: 2px; border-color: var(--line); }
+.sticker-pink { background: var(--pink); color: var(--on-bright); }
+.sticker-acid { background: var(--acid); color: var(--on-bright); }
+/* o terceiro fica de contorno: ritmo, não repetição */
 
 /* ---------- Botões ---------- */
 .btn {
@@ -355,7 +355,7 @@ h2.block-title {
   /* A régua fica por baixo, não ao lado: em flex o título era um item anónimo
      e encolhia até cortar palavras. */
   padding-bottom: 16px;
-  border-bottom: var(--hairline);
+  border-bottom: 2px solid var(--line);
 }
 
 /* ---------- Cards ---------- */
@@ -370,22 +370,35 @@ h2.block-title {
   position: relative;
   background: transparent;
   border-top: var(--hairline);
-  padding: 26px 0 0;
+  padding: 26px 16px 20px;
+  margin: 0 -16px;
   display: flex;
   flex-direction: column;
   gap: 10px;
+  transition: background 0.15s;
 }
+
+/* hover: a superfície acende e a régua de categoria engorda — o card responde
+   sem saltar da página, que é o que o mundo calmo pede */
+.card:hover { background: var(--surface); }
+.card:hover::before { transform: scaleY(2); }
+.card:hover h2, .card:hover h3 { text-decoration: underline; text-underline-offset: 5px; }
 
 .card::before {
   content: "";
   position: absolute;
   top: -1px;
   left: 0;
-  width: 44px;
-  height: 2px;
+  right: 0;
+  height: 3px;
+  transform-origin: top;
+  /* scaleY em vez de animar height/top: são propriedades de layout e forçam
+     reflow a cada frame */
+  transition: transform 0.15s;
 }
 
 .card:nth-child(3n+1)::before { background: var(--acid); }
+.card { border-top-color: transparent; }
 .card:nth-child(3n+2)::before { background: var(--pink); }
 .card:nth-child(3n+3)::before { background: var(--blue); }
 
@@ -419,7 +432,6 @@ h2.block-title {
   padding: 4px 10px;
 }
 
-.card .tag.green { background: var(--acid); color: var(--on-bright); box-shadow: 2px 2px 0 var(--line); }
 
 .card > a:last-child {
   font-family: var(--font-mono);
@@ -503,8 +515,7 @@ main.wrap > h1 {
 }
 
 /* dark mode: o gradiente claro do placeholder (inline no build) destoa do tema */
-/* o placeholder usa os tokens --ph-*, que já invertem sozinhos — a regra
-   html.dark com !important que aqui estava deixou de ser precisa */
+/* o placeholder usa os tokens --ph-* */
 
 .prose .article-img {
   display: block;
@@ -760,7 +771,11 @@ main.wrap > h1 {
   .hero-deco { font-size: 90px; top: 10px; right: 6%; }
   .hero { padding: 48px 0 44px; }
   .site-header .inner { padding: 12px 16px; }
-  .wrap { padding: 0 16px; }
+  .wrap { padding: 0 var(--wrap-pad); }
+}
+
+@media (max-width: 720px) {
+  :root { --wrap-pad: 16px; }
 }
 
 /* ---------- Veredicto no topo ----------

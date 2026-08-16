@@ -154,7 +154,6 @@ function scripts(relPath, extra) {
     '  <script src="' + a + 'layout.js"></script>\n' +
     '  <script src="' + a + 'affiliate-links.js"></script>\n' +
     '  <script src="' + a + 'i18n.js"></script>\n' +
-    '  <script src="' + a + 'darkmode.js"></script>\n' +
     '  <script src="' + a + 'cookie-banner.js"></script>\n' +
     '  <script src="' + a + 'motion.js"></script>\n' +
     (extra ? '  <script src="' + a + extra + '"></script>\n' : "") +
@@ -521,26 +520,26 @@ function homePage(lang) {
     "    </div>\n" +
     "  </section>\n" +
     '\n  <main class="wrap">\n' +
-    '\n    <section style="padding: 26px 0 10px;">\n' +
+    '\n    <section class="band">\n' +
     // Sem eyebrow nem número de secção: "Manifesto 00" por cima de "NÃO
     // FAZEMOS LISTAS DE 10 FERRAMENTAS" não acrescentava nada ao título, e a
     // sequência 00/01/02 não era sequência nenhuma. O h2 carrega-se sozinho.
     '      <h2 class="block-title">' + L.manifestoTitle + "</h2>\n" +
     '      <p style="max-width: 62ch;">' + L.manifestoText + "</p>\n" +
     "    </section>\n" +
-    "\n    <section>\n" +
+    '\n    <section class="band band-tint">\n' +
     '      <h2 class="block-title">' + L.s1Title + "</h2>\n" +
     '      <div class="grid">\n' +
     s1 +
     "\n      </div>\n" +
     "    </section>\n" +
-    "\n    <section>\n" +
+    '\n    <section class="band">\n' +
     '      <h2 class="block-title">' + L.s2Title + "</h2>\n" +
     '      <div class="grid">\n' +
     featuredCards +
     "\n      </div>\n" +
     "    </section>\n" +
-    "\n    <section>\n" +
+    '\n    <section class="band band-tint">\n' +
     '      <div class="cta">\n' +
     "        <h3>" + L.newsletterTitle + "</h3>\n" +
     "        <p>" + L.newsletterText + "</p>\n" +
@@ -860,7 +859,7 @@ function validate() {
    Falha o build: uma cor ilegível é um bug, não um aviso.
    Se acrescentares um par de cores novo ao CSS, acrescenta-o também a PAIRS. */
 
-function tokensFor(mode) {
+function tokensFor() {
   const css = fs.readFileSync(path.join(ROOT, "assets", "style.css"), "utf8");
   function block(selector) {
     const m = css.match(new RegExp(selector.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + "\\s*\\{([^}]*)\\}"));
@@ -871,7 +870,7 @@ function tokensFor(mode) {
   }
   const light = block(":root");
   // o modo escuro redefine só alguns tokens; os restantes herdam de :root
-  return mode === "dark" ? Object.assign({}, light, block("html.dark")) : light;
+  return light; // o site deixou de ter modo escuro
 }
 
 function relLum(hex) {
@@ -922,8 +921,8 @@ const CONTRAST_PAIRS = [
 
 function contrastIssues() {
   const issues = [];
-  ["light", "dark"].forEach((mode) => {
-    const t = tokensFor(mode);
+  ["light"].forEach((mode) => {
+    const t = tokensFor();
     CONTRAST_PAIRS.forEach((p) => {
       if (!t[p.fg] || !t[p.bg]) {
         issues.push("contraste [" + mode + "]: token --" + (t[p.fg] ? p.bg : p.fg) + " não existe em style.css");
