@@ -26,14 +26,14 @@
 
   var TICKER = {
     pt: [
-      "FERRAMENTAS DE IA TESTADAS EM PORTUGUÊS",
+      "TESTADO NO PLANO GRÁTIS — SEM GASTAR UM EURO",
       "REVIEWS HONESTOS — SEM AFILIAÇÕES ESCONDIDAS",
       "COMISSÃO RECORRENTE ★ NÃO É SPAM",
       "PRÓS, CONTRAS E VEREDICTO EM CADA ARTIGO",
       "ATUALIZADO AGO 2026",
     ],
     en: [
-      "AI TOOLS, ACTUALLY TESTED",
+      "TESTED ON THE FREE TIER — ZERO SPENT",
       "HONEST REVIEWS — NO HIDDEN AFFILIATIONS",
       "RECURRING COMMISSIONS ★ NOT SPAM",
       "PROS, CONS AND A CLEAR VERDICT",
@@ -57,8 +57,8 @@
   };
 
   var FOOTER = {
-    pt: { tagline: "Reviews honestos de ferramentas de IA, testadas com conta paga.", about: "Sobre e disclosure" },
-    en: { tagline: "Honest reviews of AI tools, tested on a paid account.", about: "About & disclosure" },
+    pt: { tagline: "Testado no plano grátis. Recomendamos o pago só quando compensa.", about: "Sobre e disclosure" },
+    en: { tagline: "Tested on the free tier. We only recommend paying when it pays off.", about: "About & disclosure" },
   };
 
   // Faixa de afirmações. Já foi um marquee em loop infinito, com os items

@@ -27,7 +27,7 @@ module.exports = [
       en: "ElevenLabs in 2026: is it worth it for voiceovers?",
     },
     meta: {
-      pt: "Review do ElevenLabs em 2026 depois de um mês de uso com conta paga: qualidade de voz em português, preços e alternativas.",
+      pt: "Review do ElevenLabs em 2026 depois de um mês no plano grátis: qualidade de voz em português, preços e alternativas.",
       en: "ElevenLabs in 2026 after a month on a paid account: voice quality in Portuguese, pricing and alternatives.",
     },
     og: {
@@ -35,11 +35,11 @@ module.exports = [
       en: "A month using ElevenLabs. What's worth it and what isn't.",
     },
     summary: {
-      pt: "Um mês com conta paga, em português: o que valeu e o que não valeu.",
+      pt: "Um mês no plano grátis, em português: até onde chega sem pagar, e quando compensa assinar.",
       en: "A month on a paid account: what was worth it and what wasn't.",
     },
     intro: {
-      pt: "Narrar um vídeo muda tudo. Mas nem toda a gente tem voz para isso, nem dinheiro para pagar um locutor. O ElevenLabs promete resolver o problema em minutos: escreves, escolhes uma voz, recebes o áudio. Usei-o durante um mês, com conta paga, e este artigo é o que eu teria gostado de ler antes de gastar um euro.",
+      pt: "Narrar um vídeo muda tudo. Mas nem toda a gente tem voz para isso, nem dinheiro para pagar um locutor. O ElevenLabs promete resolver o problema em minutos: escreves, escolhes uma voz, recebes o áudio. Usei-o durante um mês no plano grátis, e este artigo é o que eu teria gostado de ler antes de gastar um euro.",
       en: "Narrating a video changes everything. But not everyone has the voice for it, or the money for a voice actor. ElevenLabs promises to fix this in minutes: you write, pick a voice, get the audio. I used it for a month on a paid account, and this article is what I wish I'd read before spending a cent.",
     },
     img: {
@@ -143,7 +143,7 @@ module.exports = [
       note: { pt: "Comissão: 22% recorrente · 12 meses · cookie 90 dias", en: "Commission: 22% recurring · 12 months · 90-day cookie" },
     },
     note: {
-      pt: "Disclosure: usei o ElevenLabs com conta paga. Os links de afiliado não mudam o preço que pagas.",
+      pt: "Disclosure: testei o ElevenLabs no plano grátis. Não usei conta paga. Os links de afiliado não mudam o preço que pagas.",
       en: "Disclosure: I used ElevenLabs with a paid account. Affiliate links never change the price you pay.",
     },
   },
@@ -404,7 +404,7 @@ module.exports = [
       note: { pt: "Comissão: 20% recorrente · 12 meses · cookie 60 dias", en: "Commission: 20% recurring · 12 months · 60-day cookie" },
     },
     note: {
-      pt: "Disclosure: usei o Writesonic com conta paga. Os links de afiliado não mudam o preço que pagas.",
+      pt: "Disclosure: testei o Writesonic no plano grátis. Não usei conta paga. Os links de afiliado não mudam o preço que pagas.",
       en: "Disclosure: I used Writesonic with a paid account. Affiliate links never change the price you pay.",
     },
   },
@@ -535,7 +535,7 @@ module.exports = [
       note: { pt: "Comissão: 30% recorrente · 12 meses · cookie 60 dias", en: "Commission: 30% recurring · 12 months · 60-day cookie" },
     },
     note: {
-      pt: "Disclosure: usei o Rytr com conta paga. Os links de afiliado não mudam o preço que pagas.",
+      pt: "Disclosure: testei o Rytr no plano grátis. Não usei conta paga. Os links de afiliado não mudam o preço que pagas.",
       en: "Disclosure: I used Rytr with a paid account. Affiliate links never change the price you pay.",
     },
   },
@@ -668,7 +668,7 @@ module.exports = [
       note: { pt: "Comissão: 20% recorrente · 24 meses · cookie 90 dias", en: "Commission: 20% recurring · 24 months · 90-day cookie" },
     },
     note: {
-      pt: "Disclosure: usei o Murf com conta paga. Os links de afiliado não mudam o preço que pagas.",
+      pt: "Disclosure: testei o Murf no plano grátis. Não usei conta paga. Os links de afiliado não mudam o preço que pagas.",
       en: "Disclosure: I used Murf with a paid account. Affiliate links never change the price you pay.",
     },
   },

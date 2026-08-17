@@ -31,7 +31,7 @@ function configValue(key) {
 const siteUrl = (configValue("siteUrl") || "https://SEU-DOMINIO.pt").replace(/\/+$/, "");
 const contactEmail = configValue("contactEmail") || "ola@SEU-DOMINIO.pt";
 const brandName = configValue("brand") || "Antes de Assinares";
-const brandTagline = configValue("tagline") || "Reviews honestos de ferramentas de IA, testadas com conta paga";
+const brandTagline = configValue("tagline") || "Testado no plano grátis. Recomendamos o pago só quando compensa";
 
 function programName(key) {
   const m = configSrc.match(new RegExp(key + ":\\s*\\{[\\s\\S]*?name:\\s*\"([^\"]+)\""));
@@ -47,7 +47,7 @@ function orgSchema(lang, relPath) {
     url: urlsFor(relPath).current,
     email: contactEmail,
     description: brandTagline,
-    slogan: "Reviews honestos, testados, em português",
+    slogan: "Testado no plano grátis, em português",
   };
 }
 
@@ -418,7 +418,7 @@ function listingPage(kind, lang) {
 /* ---------- Home ---------- */
 const HOME = {
   pt: {
-    title: "Antes de Assinares — Reviews honestos de ferramentas de IA, em português",
+    title: "Antes de Assinares — Testamos o plano grátis antes de te dizermos para pagar",
     meta: "Reviews honestas e guias práticos de ferramentas de IA (escrita, voz, vídeo) para criadores de conteúdo e pequenas empresas — em português.",
     og: "Reviews honestas e guias práticos de ferramentas de IA para criadores e pequenas empresas.",
     heroDeco: "✦",
@@ -450,7 +450,7 @@ const HOME = {
     newsletterErr: "Email inválido — verifica e tenta outra vez.",
   },
   en: {
-    title: "Antes de Assinares — Honest reviews of AI tools, tested on a paid account",
+    title: "Antes de Assinares — We test the free tier before telling you to pay",
     meta: "Honest reviews and practical guides of AI tools (writing, voice, video) for content creators and small businesses.",
     og: "We test every tool, tell you what's good, what's bad, and who it's for.",
     heroDeco: "✦",
@@ -881,6 +881,18 @@ function validate() {
       warnings.push(a.slug + ': campo "date" deve ser YYYY-MM-DD (recebido: "' + a.date + '")');
     }
     if (a.slug) walk(a.slug, a.slug, a);
+  });
+
+  // 3b) Esqueletos de tools/novo-artigo.js por acabar — aviso por campo.
+  //     O artigo constrói e é visível, por isso não é erro; mas publicar um
+  //     "PREENCHER" é pior do que não publicar.
+  articles.forEach((a) => {
+    const bruto = JSON.stringify(a);
+    if (bruto.indexOf("PREENCHER") === -1) return;
+    const quantos = (bruto.match(/PREENCHER/g) || []).length;
+    warnings.push(
+      a.slug + ": " + quantos + ' campo(s) ainda com "PREENCHER" — esqueleto de novo-artigo.js por acabar'
+    );
   });
 
   // 4) Contraste WCAG AA nos dois modos — erro (texto ilegível é um bug).

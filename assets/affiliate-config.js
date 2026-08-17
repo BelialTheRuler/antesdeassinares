@@ -7,7 +7,7 @@
    ============================================================ */
 window.AFFILIATE_CONFIG = {
   brand: "Antes de Assinares",
-  tagline: "Reviews honestos de ferramentas de IA, testadas com conta paga",
+  tagline: "Testado no plano grátis. Recomendamos o pago só quando compensa",
   contactEmail: "belialdev.pro@protonmail.com", // ← contacto público. Mudar para ola@dominio.pt quando houver domínio.
 
   // URL base do site (sem barra final). Usado pelo build.js para gerar
