@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Open-source AI voice: the models worth using in 2026 | Antes de Assinares</title>
+  <meta name="description" content="Kokoro, Chatterbox, XTTS-v2 and Higgs Audio: what each does, its licence, and the real problem for European Portuguese.">
+  <link rel="canonical" href="https://belialtheruler.github.io/antesdeassinares/en/reviews/voz-open-source.html">
+  <link rel="alternate" hreflang="pt-PT" href="https://belialtheruler.github.io/antesdeassinares/reviews/voz-open-source.html">
+  <link rel="alternate" hreflang="en" href="https://belialtheruler.github.io/antesdeassinares/en/reviews/voz-open-source.html">
+  <link rel="alternate" hreflang="x-default" href="https://belialtheruler.github.io/antesdeassinares/reviews/voz-open-source.html">
+  <meta property="og:title" content="Free AI voice: the open models worth using">
+  <meta property="og:description" content="Kokoro, Chatterbox, XTTS-v2 and Higgs Audio: what each does, its licence, and the real problem for European Portuguese.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://belialtheruler.github.io/antesdeassinares/en/reviews/voz-open-source.html">
+  <meta property="og:locale" content="en">
+  <meta property="og:locale:alternate" content="pt_PT">
+  <meta property="og:image" content="https://belialtheruler.github.io/antesdeassinares/assets/og/og-default.png">
+  <link rel="stylesheet" href="../../assets/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤖</text></svg>">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Article","headline":"Open-source AI voice: the models worth using in 2026","description":"Kokoro, Chatterbox, XTTS-v2 and Higgs Audio: what each does, its licence, and the real problem for European Portuguese.","datePublished":"2026-08-17","dateModified":"2026-08-17","inLanguage":"en","mainEntityOfPage":"https://belialtheruler.github.io/antesdeassinares/en/reviews/voz-open-source.html","image":"https://belialtheruler.github.io/antesdeassinares/assets/og/og-default.png","articleSection":"Comparison","author":{"@type":"Organization","name":"Antes de Assinares","url":"https://belialtheruler.github.io/antesdeassinares/index.html"},"publisher":{"@type":"Organization","name":"Antes de Assinares","url":"https://belialtheruler.github.io/antesdeassinares/index.html"}}]}</script>
+</head>
+<body data-page="reviews" data-lang="en">
+  <div data-header></div>
+
+  <main class="wrap article-layout">
+    <article class="prose">
+      <h1>Open-source AI voice: the models worth using in 2026</h1>
+      <p class="meta">Comparison · Updated August 2026 · 8 min read</p>
+
+      <span class="disclosure">⚖️ This article contains affiliate links — see our <a href="../sobre.html">policy</a>.</span>
+
+      <p>AI voice stopped being expensive. There are open models you run on your own machine, with no credits, no monthly cap and no text leaving your computer. The problem is different: almost none speak European Portuguese, and if you don't know that going in you'll waste an afternoon finding out.</p>
+
+      <aside class="verdict">
+        <h2 id="veredicto">Verdict</h2>
+        <p>If your content is English and you want zero cost: Chatterbox for the MIT licence and the cloning, or Kokoro if your machine is weak. Both do the job.</p>
+        <p>If your content is European Portuguese, the honest answer is that open source isn't there yet. The path is XTTS-v2 with a fine-tune, and it's work. For professional PT-PT a commercial tool still wins, and we say which in <a href="../reviews/elevenlabs.html">ElevenLabs in 2026</a>.</p>
+      </aside>
+
+      <div class="placeholder-img" style="aspect-ratio: 16/6; background: linear-gradient(120deg, var(--ph-bg-a), var(--ph-bg-b)); display:flex; align-items:center; justify-content:center; color:var(--ph-fg); font-weight:700;">📷 Screenshot of the test (replace with your own image)</div>
+
+<h2 id="the-european-portuguese-problem">The European Portuguese problem</h2>
+<p>We start here because it decides everything else. European Portuguese voices are extremely rare in open models: the overwhelming majority of training data is Brazilian Portuguese, which differs in pronunciation, intonation and rhythm.</p>
+<p>XTTS-v2, one of the most used, has a strong PT-BR bias. There is a fine-tune on Hugging Face built precisely because of it, <strong>xtts-v2-antonio-oliveira-pt-pt</strong>, and its existence is the best proof the problem is real.</p>
+<p>Kokoro, the lightest here, has <strong>no</strong> Portuguese voice at all. It carries pt-br only as a phonemiser, which means reading Portuguese with a voice that isn't Portuguese. If your audience is in Portugal, they hear it in the first sentence.</p>
+<h2 id="the-models-and-what-separates-them">The models, and what separates them</h2>
+<ul>
+  <li><strong>Kokoro</strong> (82M params, Apache 2.0) — the lightest. Runs on almost anything, GPU optional. Right for fast English narration; useless for European Portuguese.</li>
+  <li><strong>Chatterbox</strong> (0.5B, MIT) — from Resemble AI. Clones a voice from a few seconds and controls emotion. MIT is about as permissive as licences get, commercial use included.</li>
+  <li><strong>XTTS-v2</strong> — clones voices across 17 languages from a ~6 second sample. The only one with a realistic path to European Portuguese, via fine-tune.</li>
+  <li><strong>Higgs Audio V2</strong> (~5.8B, Apache 2.0) — the most natural and the heaviest. Wants a real GPU.</li>
+  <li><strong>Piper</strong> — a licence note many people miss: the original MIT version was archived in October 2025 and development moved to the OHF-Voice/piper1-gpl fork, which is <strong>GPL-3.0</strong>. Not the same conversation if you're thinking commercial.</li>
+</ul>
+<h2 id="our-test">Our test</h2>
+<p>⚠️ NOT YET TESTED. The plan: the same European Portuguese sentence through all four, recorded and compared side by side, with generation time and hardware noted. While this block says NOT YET TESTED, the article should not be published.</p>
+<div class="pc">
+  <div class="pros">
+    <h3>Pros</h3>
+    <ul><li>Zero cost per character, forever</li>
+<li>Your text never leaves your machine</li>
+<li>No monthly credit cap</li>
+<li>Permissive licences on three of four</li></ul>
+  </div>
+  <div class="cons">
+    <h3>Cons</h3>
+    <ul><li>European Portuguese is the weak point of the whole category</li>
+<li>You need hardware, or you rent it</li>
+<li>Setup and upkeep are on you</li>
+<li>Emotional range still trails the commercial top end</li></ul>
+  </div>
+</div>
+<h2 id="what-if-i-have-no-hardware">What if I have no hardware?</h2>
+<p>It's the most common objection and it has an answer. You don't need to buy a graphics card to try this: GPUs rent by the hour and testing a voice model costs cents. The actual numbers are in <a href="../guias/correr-ia-no-portatil.html">Run AI on your laptop</a>.</p>
+
+      <p class="muted" style="font-size:var(--t-body);"><em>Disclosure: this article has no affiliate links. The models below are free and pay nobody a commission.</em></p>
+
+      <nav class="related" aria-label="Keep deciding">
+        <h2>Keep deciding</h2>
+        <ul>
+          <li><a href="../reviews/planos-gratis.html"><span class="related-kind">Comparison</span>The AI free tiers worth using in 2026</a></li>
+          <li><a href="../reviews/video-ia-open-source.html"><span class="related-kind">Comparison</span>Open-source AI video: worth it against HeyGen?</a></li>
+          <li><a href="../reviews/modelos-abertos-por-vram.html"><span class="related-kind">Comparison</span>Which open model for what: a guide by VRAM</a></li>
+        </ul>
+      </nav>
+    </article>
+
+    <aside class="rail">
+      <nav class="toc" aria-label="Article contents">
+        <h2>In this article</h2>
+        <ul>
+          <li><a href="#veredicto">Verdict</a></li>
+        <li><a href="#the-european-portuguese-problem">The European Portuguese problem</a></li>
+        <li><a href="#the-models-and-what-separates-them">The models, and what separates them</a></li>
+        <li><a href="#our-test">Our test</a></li>
+        <li><a href="#what-if-i-have-no-hardware">What if I have no hardware?</a></li>
+        </ul>
+      </nav>
+    </aside>
+  </main>
+
+  <div data-footer></div>
+  <div id="cookie-banner" role="dialog" aria-label="Cookie consent">
+    <p>This site only uses technical cookies (localStorage). We don't load third-party trackers without your consent.</p>
+    <div class="row">
+      <button class="decline">Decline</button>
+      <button class="accept">Accept</button>
+    </div>
+  </div>
+  <script src="../../assets/affiliate-config.js"></script>
+  <script src="../../assets/layout.js"></script>
+  <script src="../../assets/affiliate-links.js"></script>
+  <script src="../../assets/i18n.js"></script>
+  <script src="../../assets/cookie-banner.js"></script>
+  <script src="../../assets/motion.js"></script>
+</body>
+</html>

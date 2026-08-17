@@ -793,4 +793,328 @@ module.exports = [
       en: "Disclosure: this guide uses affiliate links. They never change the price you pay.",
     },
   },
+
+  /* ==============================================================
+     ABERTOS E GRÁTIS — a coluna sem comissão.
+     Os factos (licença, VRAM, preços) estão verificados. Os resultados de
+     TESTE estão marcados com ⚠️ POR TESTAR: são para preencher depois de
+     correres a ferramenta. Publicar um resultado que não mediste é a única
+     coisa que este site não pode fazer.
+     ============================================================== */
+  {
+    slug: "voz-open-source",
+    category: "comparacao",
+    date: "2026-08-17",
+    affiliate: null,
+    readMin: 8,
+    updated: { pt: "agosto de 2026", en: "August 2026" },
+    title: { pt: "Voz com IA open source: os modelos que valem a pena em 2026", en: "Open-source AI voice: the models worth using in 2026" },
+    meta: { pt: "Kokoro, Chatterbox, XTTS-v2 e Higgs Audio: o que faz cada um, que licença tem, e o problema sério de quem quer português de Portugal.", en: "Kokoro, Chatterbox, XTTS-v2 and Higgs Audio: what each does, its licence, and the real problem for European Portuguese." },
+    og: { pt: "Voz com IA sem pagar nada: os modelos abertos que valem a pena", en: "Free AI voice: the open models worth using" },
+    summary: { pt: "Quatro modelos abertos, quatro licenças diferentes — e um problema que ninguém avisa se queres português de Portugal.", en: "Four open models, four licences — and a problem nobody warns you about if you want European Portuguese." },
+    intro: { pt: "Voz com IA deixou de ser caro. Há modelos abertos que corres na tua máquina, sem créditos, sem limite mensal e sem enviar o texto para servidor nenhum. O problema é outro: quase nenhum fala português de Portugal, e quem não souber isso à partida vai gastar uma tarde a descobri-lo.", en: "AI voice stopped being expensive. There are open models you run on your own machine, with no credits, no monthly cap and no text leaving your computer. The problem is different: almost none speak European Portuguese, and if you don't know that going in you'll waste an afternoon finding out." },
+    img: { pt: "📷 Captura de ecrã do teste (substituir por imagem própria)", en: "📷 Screenshot of the test (replace with your own image)" },
+    note: { pt: "Disclosure: este artigo não tem links de afiliado. Os modelos abaixo são gratuitos e não pagam comissão a ninguém.", en: "Disclosure: this article has no affiliate links. The models below are free and pay nobody a commission." },
+    sections: [
+      {
+        h2: { pt: "O problema do português de Portugal", en: "The European Portuguese problem" },
+        p: {
+          pt: ["Começamos por aqui porque é o que decide tudo o resto. As vozes em português de Portugal são raríssimas em modelos abertos: a esmagadora maioria do treino é em português do Brasil, que tem pronúncia, entoação e ritmo diferentes.", "O XTTS-v2, dos mais usados, tem viés forte para PT-BR. Existe na Hugging Face um fine-tune feito precisamente por causa disso, o <strong>xtts-v2-antonio-oliveira-pt-pt</strong>, e a sua existência é a melhor prova de que o problema é real.", "O Kokoro, o mais leve da lista, não tem <strong>nenhuma</strong> voz portuguesa. Traz pt-br apenas como fonemizador, o que significa ler português com uma voz que não é portuguesa. Se o teu público é de Portugal, ouve-se à primeira frase."],
+          en: ["We start here because it decides everything else. European Portuguese voices are extremely rare in open models: the overwhelming majority of training data is Brazilian Portuguese, which differs in pronunciation, intonation and rhythm.", "XTTS-v2, one of the most used, has a strong PT-BR bias. There is a fine-tune on Hugging Face built precisely because of it, <strong>xtts-v2-antonio-oliveira-pt-pt</strong>, and its existence is the best proof the problem is real.", "Kokoro, the lightest here, has <strong>no</strong> Portuguese voice at all. It carries pt-br only as a phonemiser, which means reading Portuguese with a voice that isn't Portuguese. If your audience is in Portugal, they hear it in the first sentence."]
+        },
+      },
+      {
+        h2: { pt: "Os modelos, e o que muda entre eles", en: "The models, and what separates them" },
+        ul: {
+          pt: ["<strong>Kokoro</strong> (82M parâmetros, Apache 2.0) — o mais leve. Corre em quase qualquer máquina, GPU opcional. Certo para narração rápida em inglês; para PT-PT não serve.", "<strong>Chatterbox</strong> (0.5B, MIT) — da Resemble AI. Clona uma voz a partir de poucos segundos e controla emoção. MIT é das licenças mais permissivas que existem, uso comercial incluído.", "<strong>XTTS-v2</strong> — clona voz em 17 línguas a partir de ~6 segundos de amostra. É o único com caminho realista para PT-PT, via fine-tune.", "<strong>Higgs Audio V2</strong> (~5.8B, Apache 2.0) — o mais natural e o mais pesado. Pede GPU a sério.", "<strong>Piper</strong> — nota de licença que muita gente não vê: a versão MIT original foi arquivada em outubro de 2025 e o desenvolvimento passou para o fork OHF-Voice/piper1-gpl, que é <strong>GPL-3.0</strong>. Não é a mesma conversa se pensas em uso comercial."],
+          en: ["<strong>Kokoro</strong> (82M params, Apache 2.0) — the lightest. Runs on almost anything, GPU optional. Right for fast English narration; useless for European Portuguese.", "<strong>Chatterbox</strong> (0.5B, MIT) — from Resemble AI. Clones a voice from a few seconds and controls emotion. MIT is about as permissive as licences get, commercial use included.", "<strong>XTTS-v2</strong> — clones voices across 17 languages from a ~6 second sample. The only one with a realistic path to European Portuguese, via fine-tune.", "<strong>Higgs Audio V2</strong> (~5.8B, Apache 2.0) — the most natural and the heaviest. Wants a real GPU.", "<strong>Piper</strong> — a licence note many people miss: the original MIT version was archived in October 2025 and development moved to the OHF-Voice/piper1-gpl fork, which is <strong>GPL-3.0</strong>. Not the same conversation if you're thinking commercial."]
+        },
+      },
+      {
+        h2: { pt: "O nosso teste", en: "Our test" },
+        p: {
+          pt: ["⚠️ POR TESTAR. O plano: a mesma frase em PT-PT nos quatro modelos, gravada e comparada lado a lado, com tempo de geração e hardware anotados. Enquanto este bloco disser POR TESTAR, o artigo não deve ser publicado."],
+          en: ["⚠️ NOT YET TESTED. The plan: the same European Portuguese sentence through all four, recorded and compared side by side, with generation time and hardware noted. While this block says NOT YET TESTED, the article should not be published."]
+        },
+      },
+      {
+        pc: {
+          pros: { pt: ["Custo zero por caractere, para sempre", "O texto nunca sai da tua máquina", "Sem limite mensal de créditos", "Licenças permissivas em três dos quatro"], en: ["Zero cost per character, forever", "Your text never leaves your machine", "No monthly credit cap", "Permissive licences on three of four"] },
+          cons: { pt: ["Português de Portugal é o ponto fraco de toda a categoria", "Precisas de hardware, ou de o alugar", "Instalação e manutenção são contigo", "A gama emocional ainda fica atrás do topo comercial"], en: ["European Portuguese is the weak point of the whole category", "You need hardware, or you rent it", "Setup and upkeep are on you", "Emotional range still trails the commercial top end"] },
+        },
+      },
+      {
+        h2: { pt: "E se não tenho hardware?", en: "What if I have no hardware?" },
+        p: {
+          pt: ["É a objeção mais comum e tem resposta. Não precisas de comprar placa gráfica para experimentar: alugam-se GPUs à hora e, para testar um modelo de voz, falamos de cêntimos. O cálculo concreto está em [Correr IA no teu portátil](correr-ia-no-portatil)."],
+          en: ["It's the most common objection and it has an answer. You don't need to buy a graphics card to try this: GPUs rent by the hour and testing a voice model costs cents. The actual numbers are in [Run AI on your laptop](correr-ia-no-portatil)."]
+        },
+      },
+      {
+        h2: { pt: "Veredicto", en: "Verdict" },
+        p: {
+          pt: ["Se o teu conteúdo é em inglês e queres custo zero: Chatterbox pela licença MIT e pela clonagem, ou Kokoro se a máquina for fraca. Ambos resolvem.", "Se o teu conteúdo é em português de Portugal, a resposta honesta é que o open source ainda não está lá. O caminho é XTTS-v2 com fine-tune, e dá trabalho. Para uso profissional em PT-PT uma ferramenta comercial ainda ganha, e dizemos qual em [ElevenLabs em 2026](elevenlabs)."],
+          en: ["If your content is English and you want zero cost: Chatterbox for the MIT licence and the cloning, or Kokoro if your machine is weak. Both do the job.", "If your content is European Portuguese, the honest answer is that open source isn't there yet. The path is XTTS-v2 with a fine-tune, and it's work. For professional PT-PT a commercial tool still wins, and we say which in [ElevenLabs in 2026](elevenlabs)."]
+        },
+      },
+    ],
+  },
+  {
+    slug: "correr-ia-no-portatil",
+    category: "guia",
+    date: "2026-08-17",
+    affiliate: null,
+    readMin: 7,
+    updated: { pt: "agosto de 2026", en: "August 2026" },
+    title: { pt: "Correr IA no teu portátil: o que precisas mesmo", en: "Run AI on your laptop: what you actually need" },
+    meta: { pt: "Quanta VRAM é precisa, o que é a quantização em 4-bit, e quanto custa alugar uma GPU à hora em vez de comprar uma.", en: "How much VRAM you need, what 4-bit quantisation is, and what it costs to rent a GPU by the hour instead of buying one." },
+    og: { pt: "Precisas mesmo de um data center para correr IA? Não.", en: "Do you really need a data center to run AI? No." },
+    summary: { pt: "A objeção número um a modelos abertos é o hardware. Tem resposta, e é mais barata do que parece.", en: "The number one objection to open models is hardware. It has an answer, and it's cheaper than you think." },
+    intro: { pt: "Sempre que sai um modelo aberto novo, o comentário mais votado é o mesmo: «agora só preciso de um data center». É meia verdade. A versão grande de qualquer modelo é impossível em casa; a versão que interessa, quase sempre, cabe.", en: "Every time a new open model lands, the top comment is the same: \"now all I need is a data center\". It's half true. The big version of any model is impossible at home; the version that matters usually fits." },
+    img: { pt: "📷 Captura de ecrã do teste (substituir por imagem própria)", en: "📷 Screenshot of the test (replace with your own image)" },
+    note: { pt: "Disclosure: este artigo não tem links de afiliado para os modelos, porque são gratuitos. Se recomendarmos um serviço de aluguer de GPU, o link será de afiliado e estará assinalado.", en: "Disclosure: no affiliate links for the models here, because they're free. If we recommend a GPU rental service the link will be an affiliate one and will be marked as such." },
+    sections: [
+      {
+        h2: { pt: "A regra: VRAM manda", en: "The rule: VRAM decides" },
+        p: {
+          pt: ["Não é o processador nem a RAM do sistema. O que decide se um modelo corre é a memória da placa gráfica, a VRAM. Se o modelo não cabe lá dentro, ou não arranca ou arrasta-se.", "O truque que torna isto possível chama-se <strong>quantização</strong>: guardar os pesos do modelo com menos precisão, tipicamente 4 bits em vez de 16. Perde-se pouca qualidade e o tamanho cai para cerca de um quarto."],
+          en: ["It isn't the processor or system RAM. What decides whether a model runs is graphics card memory, VRAM. If the model doesn't fit, it either won't start or it crawls.", "The trick that makes this possible is <strong>quantisation</strong>: storing the model's weights at lower precision, typically 4 bits instead of 16. Little quality is lost and the size drops to roughly a quarter."]
+        },
+      },
+      {
+        h2: { pt: "O que cabe em quê", en: "What fits where" },
+        ul: {
+          pt: ["<strong>8 GB de VRAM</strong> — modelos pequenos e voz. O Kokoro corre mesmo sem GPU dedicada.", "<strong>12 GB</strong> — Ministral 3 8B em 4-bit. É o ponto de entrada realista para texto útil.", "<strong>16 GB</strong> — gpt-oss-20b. É aqui que a maioria das pessoas quer chegar.", "<strong>24 GB ou mais</strong> — Qwen3 VL 32B e companhia. Já é território de placa dedicada cara.", "<strong>Acima disso</strong> — as versões «Max» com centenas de milhares de milhões de parâmetros precisam de mais de 400 GB. Essas não são para ti, e não faz mal."],
+          en: ["<strong>8 GB VRAM</strong> — small models and voice. Kokoro runs without a dedicated GPU at all.", "<strong>12 GB</strong> — Ministral 3 8B in 4-bit. The realistic entry point for useful text.", "<strong>16 GB</strong> — gpt-oss-20b. This is where most people want to land.", "<strong>24 GB or more</strong> — Qwen3 VL 32B and friends. Expensive dedicated card territory.", "<strong>Above that</strong> — the \"Max\" versions with hundreds of billions of parameters need 400 GB+. Those aren't for you, and that's fine."]
+        },
+      },
+      {
+        h2: { pt: "Alugar em vez de comprar", en: "Rent instead of buying" },
+        p: {
+          pt: ["Uma placa de 16 GB custa centenas de euros. Uma hora de GPU na nuvem custa cêntimos, e para experimentar um modelo é isso que precisas. Se depois de testar chegares à conclusão de que usas todos os dias, aí compra — mas por essa altura já sabes exatamente qual.", "É também a forma honesta de escrever sobre isto: não recomendamos comprar hardware a quem ainda não sabe se vai usar."],
+          en: ["A 16 GB card costs hundreds. An hour of cloud GPU costs cents, and for trying a model that's all you need. If after testing you find you use it daily, then buy — but by then you know exactly which one.", "It's also the honest way to write about this: we don't tell people to buy hardware before they know they'll use it."]
+        },
+      },
+      {
+        h2: { pt: "O nosso teste", en: "Our test" },
+        p: {
+          pt: ["⚠️ POR TESTAR. Plano: correr o mesmo modelo em 4-bit numa máquina concreta e registar tempo de carregamento, tokens por segundo e VRAM ocupada. Sem estes números o artigo é teoria."],
+          en: ["⚠️ NOT YET TESTED. Plan: run the same model in 4-bit on a specific machine and record load time, tokens per second and VRAM used. Without those numbers this article is theory."]
+        },
+      },
+      {
+        h2: { pt: "Veredicto", en: "Verdict" },
+        p: {
+          pt: ["Se tens 16 GB de VRAM, corres hoje quase tudo o que interessa. Se não tens, aluga uma hora antes de gastares um euro em hardware.", "E se a conclusão for que não compensa nada disto para o teu caso, também é uma resposta — e é a que este site prefere dar do que empurrar-te para uma compra."],
+          en: ["If you have 16 GB of VRAM you can run almost everything that matters today. If you don't, rent an hour before spending a euro on hardware.", "And if the conclusion is that none of this is worth it for your case, that's an answer too — and one this site would rather give than push you into a purchase."]
+        },
+      },
+    ],
+  },
+  {
+    slug: "modelos-abertos-por-vram",
+    category: "comparacao",
+    date: "2026-08-17",
+    affiliate: null,
+    readMin: 6,
+    updated: { pt: "agosto de 2026", en: "August 2026" },
+    title: { pt: "Que modelo aberto para quê: um guia por VRAM", en: "Which open model for what: a guide by VRAM" },
+    meta: { pt: "Ministral, gpt-oss, Qwen e GLM: qual corre na tua placa gráfica, com que licença, e para que serve cada um.", en: "Ministral, gpt-oss, Qwen and GLM: which runs on your card, under which licence, and what each is for." },
+    og: { pt: "O modelo aberto certo para a tua placa gráfica", en: "The right open model for your graphics card" },
+    summary: { pt: "Escolhe pelo que tens, não pelo que está no topo dos benchmarks.", en: "Choose by what you have, not by what tops the benchmarks." },
+    intro: { pt: "A pergunta útil não é «qual é o melhor modelo aberto». É «qual é o melhor que corre na minha máquina». São perguntas diferentes e a segunda é a única que te muda o dia.", en: "The useful question isn't \"which is the best open model\". It's \"which is the best one that runs on my machine\". Different questions, and only the second one changes your day." },
+    img: { pt: "📷 Captura de ecrã do teste (substituir por imagem própria)", en: "📷 Screenshot of the test (replace with your own image)" },
+    note: { pt: "Disclosure: este artigo não tem links de afiliado. Todos os modelos são gratuitos.", en: "Disclosure: this article has no affiliate links. All models are free." },
+    sections: [
+      {
+        h2: { pt: "A tabela", en: "The table" },
+        ul: {
+          pt: ["<strong>12 GB de VRAM</strong> — Ministral 3 8B, Apache 2.0. O ponto de entrada para texto que serve para alguma coisa.", "<strong>16 GB</strong> — gpt-oss-20b, Apache 2.0. É o alvo da maioria das pessoas e onde a relação qualidade/hardware é melhor.", "<strong>24 GB ou mais</strong> — Qwen3 VL 32B, Apache 2.0. Multimodal, vê imagens.", "<strong>Topo, e fora de alcance doméstico</strong> — GLM 5.2 e as versões Max. Batem modelos fechados em benchmarks, mas pedem centenas de gigabytes."],
+          en: ["<strong>12 GB VRAM</strong> — Ministral 3 8B, Apache 2.0. The entry point for text that's actually useful.", "<strong>16 GB</strong> — gpt-oss-20b, Apache 2.0. Most people's target and the best quality-per-hardware ratio.", "<strong>24 GB or more</strong> — Qwen3 VL 32B, Apache 2.0. Multimodal, it sees images.", "<strong>Top end, out of home reach</strong> — GLM 5.2 and the Max versions. They beat closed models on benchmarks but want hundreds of gigabytes."]
+        },
+      },
+      {
+        h2: { pt: "Porque é que Apache 2.0 importa", en: "Why Apache 2.0 matters" },
+        p: {
+          pt: ["Todos os modelos acima são Apache 2.0, o que quer dizer uso comercial sem pedir licença a ninguém. Não é detalhe: há modelos populares com licenças que proíbem exatamente aquilo que a maioria das pessoas quer fazer. Lê sempre a licença antes de construir por cima."],
+          en: ["Every model above is Apache 2.0, which means commercial use without asking anyone. Not a detail: there are popular models with licences that forbid precisely what most people want to do. Always read the licence before building on top."]
+        },
+      },
+      {
+        h2: { pt: "O nosso teste", en: "Our test" },
+        p: { pt: ["⚠️ POR TESTAR. Plano: o mesmo prompt nos três modelos que cabem em hardware doméstico, com tokens por segundo e qualidade da resposta em português."], en: ["⚠️ NOT YET TESTED. Plan: the same prompt through the three that fit consumer hardware, with tokens per second and answer quality in Portuguese."] },
+      },
+      {
+        h2: { pt: "Veredicto", en: "Verdict" },
+        p: { pt: ["Se tens 16 GB, o gpt-oss-20b é o sítio certo para começar. Não persigas o topo da tabela de benchmarks: esses modelos não correm onde tu estás, e o que corre já resolve a maioria do trabalho.", "Não sabes quanta VRAM tens? Está explicado em [Correr IA no teu portátil](correr-ia-no-portatil)."], en: ["If you have 16 GB, gpt-oss-20b is the right place to start. Don't chase the top of the benchmark table: those models don't run where you are, and what does run already handles most of the work.", "Don't know how much VRAM you have? It's explained in [Run AI on your laptop](correr-ia-no-portatil)."] },
+      },
+    ],
+  },
+  {
+    slug: "transcrever-sem-pagar",
+    category: "guia",
+    date: "2026-08-17",
+    affiliate: null,
+    readMin: 6,
+    updated: { pt: "agosto de 2026", en: "August 2026" },
+    title: { pt: "Transcrever áudio sem pagar: Whisper e as alternativas", en: "Transcribe audio for free: Whisper and the alternatives" },
+    meta: { pt: "Whisper, Parakeet, Canary e Moonshine: qual usar para transcrever entrevistas, vídeos e reuniões sem enviar nada para a nuvem.", en: "Whisper, Parakeet, Canary and Moonshine: which to use for interviews, videos and meetings without sending anything to the cloud." },
+    og: { pt: "Transcrever horas de áudio a custo zero", en: "Transcribe hours of audio at zero cost" },
+    summary: { pt: "Quatro modelos abertos, cada um bom numa coisa diferente. E nenhum cobra por minuto.", en: "Four open models, each good at something different. And none charges by the minute." },
+    intro: { pt: "Transcrição é das poucas categorias onde o open source ganha de forma limpa. Os modelos são bons, correm em máquina normal, e o áudio nunca sai do teu computador — o que interessa se estás a transcrever uma entrevista ou uma reunião de clientes.", en: "Transcription is one of the few categories where open source wins outright. The models are good, they run on ordinary machines, and the audio never leaves your computer — which matters if you're transcribing an interview or a client meeting." },
+    img: { pt: "📷 Captura de ecrã do teste (substituir por imagem própria)", en: "📷 Screenshot of the test (replace with your own image)" },
+    note: { pt: "Disclosure: este artigo não tem links de afiliado. Todos os modelos são gratuitos.", en: "Disclosure: this article has no affiliate links. All models are free." },
+    sections: [
+      {
+        h2: { pt: "Qual para quê", en: "Which for what" },
+        ul: {
+          pt: ["<strong>Whisper large-v3</strong> — o polivalente. Se só queres uma escolha e não queres pensar mais, é esta. Lida bem com português.", "<strong>NVIDIA Parakeet TDT</strong> — o mais rápido para volume. Se tens horas de áudio para processar de uma vez, é aqui que ganhas tempo.", "<strong>NVIDIA Canary-Qwen 2.5B</strong> — o mais preciso em inglês. Para português não é a escolha óbvia.", "<strong>Moonshine</strong> — feito para correr no dispositivo, onde não há nuvem nenhuma. Telemóvel, Raspberry Pi, offline."],
+          en: ["<strong>Whisper large-v3</strong> — the all-rounder. If you want one choice and no more thinking, this is it. Handles Portuguese well.", "<strong>NVIDIA Parakeet TDT</strong> — fastest for volume. Hours of audio in one go is where this wins.", "<strong>NVIDIA Canary-Qwen 2.5B</strong> — most accurate in English. Not the obvious pick for Portuguese.", "<strong>Moonshine</strong> — built to run on-device, where there is no cloud. Phone, Raspberry Pi, offline."]
+        },
+      },
+      {
+        h2: { pt: "Porque é que isto importa mais do que parece", en: "Why this matters more than it looks" },
+        p: {
+          pt: ["Os serviços comerciais de transcrição cobram por minuto e recebem o teu áudio. Para uma entrevista pública é indiferente. Para uma reunião com um cliente, uma consulta ou uma gravação com dados pessoais, é uma decisão de privacidade — e o RGPD não gosta de ambiguidade nesse ponto.", "Correr o modelo localmente resolve as duas coisas ao mesmo tempo: custo e privacidade."],
+          en: ["Commercial transcription services charge per minute and receive your audio. For a public interview that's fine. For a client meeting, a consultation, or a recording with personal data, it's a privacy decision — and GDPR doesn't like ambiguity there.", "Running the model locally solves both at once: cost and privacy."]
+        },
+      },
+      {
+        h2: { pt: "O nosso teste", en: "Our test" },
+        p: { pt: ["⚠️ POR TESTAR. Plano: a mesma gravação em português nos quatro modelos, com taxa de erro por palavra e tempo de processamento."], en: ["⚠️ NOT YET TESTED. Plan: the same Portuguese recording through all four, with word error rate and processing time."] },
+      },
+      {
+        h2: { pt: "Veredicto", en: "Verdict" },
+        p: { pt: ["Para a maioria das pessoas: Whisper large-v3 e não se fala mais nisso. É o que dá menos problemas em português e corre em hardware modesto.", "Se transcreves por profissão e o volume é grande, vale a pena o trabalho de montar o Parakeet."], en: ["For most people: Whisper large-v3 and be done with it. Fewest problems in Portuguese and it runs on modest hardware.", "If you transcribe for a living and the volume is high, setting up Parakeet is worth the work."] },
+      },
+    ],
+  },
+  {
+    slug: "video-ia-open-source",
+    category: "comparacao",
+    date: "2026-08-17",
+    affiliate: null,
+    readMin: 7,
+    updated: { pt: "agosto de 2026", en: "August 2026" },
+    title: { pt: "Vídeo com IA open source: vale a pena contra o HeyGen?", en: "Open-source AI video: worth it against HeyGen?" },
+    meta: { pt: "LTX-2.5, Wan, HunyuanVideo, CogVideoX e Mochi 1 contra as ferramentas comerciais: onde ganham, onde perdem, e quanto custa correr.", en: "LTX-2.5, Wan, HunyuanVideo, CogVideoX and Mochi 1 against the commercial tools: where they win, where they lose, and what running them costs." },
+    og: { pt: "Vídeo com IA sem mensalidade: os modelos abertos", en: "AI video without a subscription: the open models" },
+    summary: { pt: "Cinco modelos abertos de vídeo, e a pergunta honesta: em que casos é que compensa mesmo não pagar?", en: "Five open video models, and the honest question: when does not paying actually pay off?" },
+    intro: { pt: "Vídeo é a categoria onde o open source dá mais trabalho e onde o comercial ainda ganha com mais frequência. Vale a pena perceber porquê antes de gastares um fim de semana a instalar coisas.", en: "Video is the category where open source is most work and where commercial still wins most often. Worth understanding why before you spend a weekend installing things." },
+    img: { pt: "📷 Captura de ecrã do teste (substituir por imagem própria)", en: "📷 Screenshot of the test (replace with your own image)" },
+    note: { pt: "Disclosure: os modelos abertos deste artigo não pagam comissão. As ferramentas comerciais mencionadas têm links de afiliado noutras páginas do site, sempre assinalados.", en: "Disclosure: the open models here pay no commission. The commercial tools mentioned carry affiliate links on other pages of this site, always marked." },
+    sections: [
+      {
+        h2: { pt: "Os cinco", en: "The five" },
+        ul: {
+          pt: ["<strong>LTX-2.5</strong> — dos mais rápidos a gerar, e dos mais fáceis de pôr a andar.", "<strong>Wan</strong> — bom equilíbrio entre qualidade e exigência de hardware.", "<strong>HunyuanVideo</strong> — qualidade alta, hardware alto.", "<strong>CogVideoX</strong> — o mais estudado e documentado, bom ponto de partida para quem quer perceber o que se passa por baixo.", "<strong>Mochi 1</strong> — movimento mais natural, mas pesado."],
+          en: ["<strong>LTX-2.5</strong> — among the fastest to generate and the easiest to get running.", "<strong>Wan</strong> — good balance between quality and hardware demand.", "<strong>HunyuanVideo</strong> — high quality, high hardware.", "<strong>CogVideoX</strong> — the most studied and documented, a good starting point if you want to understand the internals.", "<strong>Mochi 1</strong> — more natural motion, but heavy."]
+        },
+      },
+      {
+        h2: { pt: "O que o comercial ainda faz melhor", en: "What commercial still does better" },
+        p: {
+          pt: ["Avatares que falam com a tua cara e a tua voz, tradução com sincronia labial, e bibliotecas de templates. É por isso que uma ferramenta como o HeyGen continua a fazer sentido para quem trabalha sozinho — comparámos as duas grandes em [HeyGen vs Synthesia](heygen).", "Os modelos abertos são melhores noutra coisa: geras o que quiseres, sem limite mensal e sem termos de utilização a dizer o que podes filmar."],
+          en: ["Avatars that speak with your face and voice, translation with lip sync, and template libraries. That's why a tool like HeyGen still makes sense for solo creators — we compared the two big ones in [HeyGen vs Synthesia](heygen).", "Open models are better at something else: generate whatever you want, no monthly cap, and no terms of service telling you what you may film."]
+        },
+      },
+      {
+        h2: { pt: "O nosso teste", en: "Our test" },
+        p: { pt: ["⚠️ POR TESTAR. Plano: o mesmo prompt de 5 segundos em dois modelos abertos e numa ferramenta comercial, com tempo, custo de GPU e resultado lado a lado."], en: ["⚠️ NOT YET TESTED. Plan: the same 5-second prompt through two open models and one commercial tool, with time, GPU cost and results side by side."] },
+      },
+      {
+        h2: { pt: "Veredicto", en: "Verdict" },
+        p: { pt: ["Se precisas de um avatar a falar, paga. O open source ainda não faz isso bem e vais perder mais em tempo do que poupas em mensalidade.", "Se precisas de planos gerados, b-roll ou experimentação sem limite, os modelos abertos ganham — e a partir da segunda dezena de vídeos por mês, ganham com folga."], en: ["If you need a talking avatar, pay. Open source doesn't do that well yet and you'll lose more in time than you save in subscription.", "If you need generated shots, b-roll or unlimited experimentation, the open models win — and past twenty videos a month, they win comfortably."] },
+      },
+    ],
+  },
+  {
+    slug: "planos-gratis",
+    category: "comparacao",
+    date: "2026-08-17",
+    affiliate: "elevenlabs",
+    readMin: 7,
+    updated: { pt: "agosto de 2026", en: "August 2026" },
+    title: { pt: "Os planos grátis de IA que valem a pena em 2026", en: "The AI free tiers worth using in 2026" },
+    meta: { pt: "ElevenLabs, Murf, Rytr, Writesonic e HeyGen: o que dá para fazer sem pagar, onde bates na parede, e quando compensa mesmo assinar.", en: "ElevenLabs, Murf, Rytr, Writesonic and HeyGen: what you can do without paying, where you hit the wall, and when subscribing actually pays off." },
+    og: { pt: "O que dá para fazer sem pagar nada em 2026", en: "What you can actually do without paying in 2026" },
+    summary: { pt: "Cinco ferramentas, cinco limites do plano grátis. E a conta de quando é que vale a pena passar a pago.", en: "Five tools, five free-tier limits. And the maths of when upgrading is worth it." },
+    intro: { pt: "Ninguém assina antes de experimentar. Este artigo é o mapa do que consegues fazer a custo zero em cada uma das ferramentas que já testámos, e o ponto exato em que o plano grátis deixa de chegar.", en: "Nobody subscribes before trying. This article maps what you can do at zero cost in each of the tools we've tested, and the exact point where the free tier stops being enough." },
+    img: { pt: "📷 Captura de ecrã do teste (substituir por imagem própria)", en: "📷 Screenshot of the test (replace with your own image)" },
+    note: { pt: "Disclosure: este artigo contém links de afiliado. Testámos os planos grátis; não usámos contas pagas. Os links não mudam o preço que pagas.", en: "Disclosure: this article contains affiliate links. We tested the free tiers; we did not use paid accounts. The links don't change the price you pay." },
+    sections: [
+      {
+        h2: { pt: "Como ler esta comparação", en: "How to read this comparison" },
+        p: {
+          pt: ["Um plano grátis não é uma demonstração: é um produto com limites. A pergunta certa não é «é bom?», é «quantos minutos, quantas palavras, quantos vídeos por mês?» — e depois se esse número chega para o que fazes.", "É por isso que cada linha abaixo tem um número, não um adjetivo."],
+          en: ["A free tier isn't a demo: it's a product with limits. The right question isn't \"is it good?\", it's \"how many minutes, how many words, how many videos a month?\" — and then whether that number covers what you do.", "That's why every line below carries a number, not an adjective."]
+        },
+      },
+      {
+        h2: { pt: "Os limites, ferramenta a ferramenta", en: "The limits, tool by tool" },
+        p: { pt: ["⚠️ POR TESTAR. Cada limite tem de ser confirmado na conta e datado — os planos grátis mudam sem aviso, e um número errado aqui é pior do que não ter artigo nenhum. Ver as reviews individuais: [ElevenLabs](elevenlabs), [Murf](murf), [Rytr](rytr), [Writesonic](writesonic)."], en: ["⚠️ NOT YET TESTED. Every limit must be confirmed in-account and dated — free tiers change without notice, and a wrong number here is worse than no article at all. See the individual reviews: [ElevenLabs](elevenlabs), [Murf](murf), [Rytr](rytr), [Writesonic](writesonic)."] },
+      },
+      {
+        pc: {
+          pros: { pt: ["Dá para decidir sem gastar", "Testas a qualidade na tua língua e no teu caso", "Sem compromisso nem cartão"], en: ["Enough to decide without spending", "You test quality in your language and your use case", "No commitment, no card"] },
+          cons: { pt: ["Os limites mudam sem aviso", "Marca de água ou uso comercial proibido em alguns", "O plano grátis é desenhado para te fazer bater na parede"], en: ["Limits change without notice", "Watermarks or no commercial use on some", "The free tier is designed to make you hit the wall"] },
+        },
+      },
+      {
+        h2: { pt: "Veredicto", en: "Verdict" },
+        p: { pt: ["A regra simples: se bates no limite duas vezes no mesmo mês, o pago já compensa. Se não bates, não assines — e volta cá quando bateres.", "E se nem o pago compensa, há a hipótese de não pagar a ninguém: os modelos abertos estão em [Voz com IA open source](voz-open-source)."], en: ["The simple rule: if you hit the limit twice in one month, paying already pays off. If you don't, don't subscribe — come back when you do.", "And if even paying doesn't pay off, there's the option of paying nobody: the open models are in [Open-source AI voice](voz-open-source)."] },
+      },
+    ],
+    cta: {
+      title: { pt: "Começa pelo plano grátis do ElevenLabs", en: "Start with ElevenLabs' free tier" },
+      text: { pt: "É o que tem o limite mais generoso para voz em português e não pede cartão. Se bateres no limite, aí sim, falamos de pagar.", en: "It has the most generous free limit for Portuguese voice and asks for no card. If you hit the limit, then we can talk about paying." },
+      button: { pt: "Experimentar grátis →", en: "Try it free →" },
+      note: { pt: "Link de afiliado. Não muda o preço que pagas.", en: "Affiliate link. Doesn't change the price you pay." },
+    },
+  },
+  {
+    slug: "elevenlabs-plano-gratis",
+    category: "guia",
+    date: "2026-08-17",
+    affiliate: "elevenlabs",
+    readMin: 6,
+    updated: { pt: "agosto de 2026", en: "August 2026" },
+    title: { pt: "Até onde chegas nos 10 mil créditos grátis do ElevenLabs", en: "How far you get on ElevenLabs' 10k free credits" },
+    meta: { pt: "Quantos minutos de áudio dão 10 mil créditos, o que fica de fora do plano grátis, e em que ponto compensa passar a pago.", en: "How many minutes of audio 10k credits buy, what the free tier leaves out, and when upgrading pays off." },
+    og: { pt: "10 mil créditos grátis: quantos minutos são, na prática?", en: "10k free credits: how many minutes is that, really?" },
+    summary: { pt: "Um número concreto por minuto de áudio vale mais do que qualquer adjetivo numa review.", en: "A concrete number per minute of audio beats any adjective in a review." },
+    intro: { pt: "O plano grátis do ElevenLabs dá-te créditos por mês. Créditos não são minutos, e é aí que a maioria das pessoas se perde. Este guia converte uma coisa na outra e diz-te o que consegues fazer com isso.", en: "ElevenLabs' free tier gives you credits per month. Credits aren't minutes, and that's where most people get lost. This guide converts one into the other and tells you what you can actually do with it." },
+    img: { pt: "📷 Captura de ecrã do teste (substituir por imagem própria)", en: "📷 Screenshot of the test (replace with your own image)" },
+    note: { pt: "Disclosure: testei o ElevenLabs no plano grátis. Não usei conta paga. Os links de afiliado não mudam o preço que pagas.", en: "Disclosure: I tested ElevenLabs on the free tier. No paid account. Affiliate links don't change the price you pay." },
+    sections: [
+      {
+        h2: { pt: "Créditos não são minutos", en: "Credits aren't minutes" },
+        p: {
+          pt: ["Os créditos contam-se por caractere, não por tempo. Quer dizer que um texto denso gasta mais do que um texto com pausas, e que a mesma quantidade de créditos rende diferente consoante o que escreves.", "A conversão prática é o que interessa, e é o que este guia mede."],
+          en: ["Credits are counted per character, not per second. Which means dense text burns more than text with pauses, and the same credit balance stretches differently depending on what you write.", "The practical conversion is what matters, and it's what this guide measures."]
+        },
+      },
+      {
+        h2: { pt: "O que medimos", en: "What we measured" },
+        p: { pt: ["⚠️ POR TESTAR. Plano: gerar um guião real de vídeo curto, contar caracteres e créditos gastos, e converter para minutos de áudio em português. Confirmar também o que o plano grátis proíbe: uso comercial, clonagem de voz e download."], en: ["⚠️ NOT YET TESTED. Plan: generate a real short-video script, count characters and credits spent, convert to minutes of Portuguese audio. Also confirm what the free tier forbids: commercial use, voice cloning and downloads."] },
+      },
+      {
+        h2: { pt: "Quando compensa passar a pago", en: "When upgrading pays off" },
+        p: {
+          pt: ["A resposta depende de quantos vídeos fazes por mês, não da qualidade da voz — essa já é boa no grátis. Se fazes um vídeo por semana, provavelmente o grátis chega. Se fazes três, não chega.", "A comparação com as outras ferramentas está em [Os planos grátis que valem a pena](planos-gratis)."],
+          en: ["The answer depends on how many videos you make a month, not on voice quality — that's already good on the free tier. One video a week and free probably covers you. Three and it doesn't.", "The comparison with the other tools is in [The AI free tiers worth using](planos-gratis)."]
+        },
+      },
+      {
+        h2: { pt: "Veredicto", en: "Verdict" },
+        p: { pt: ["Para experimentar e para quem publica pouco, o plano grátis é dos mais honestos do mercado: dá para perceber mesmo se a voz serve para o teu português.", "Para uso profissional e regular, bates no limite depressa — e aí o pago compensa, mas só aí."], en: ["For trying it out and for people who publish rarely, this is one of the more honest free tiers around: enough to genuinely tell whether the voice works for your Portuguese.", "For regular professional use you hit the wall fast — and then paying pays off, but only then."] },
+      },
+    ],
+    cta: {
+      title: { pt: "Testa o plano grátis primeiro", en: "Try the free tier first" },
+      text: { pt: "Não precisas de cartão. Gera a tua própria frase, na tua língua, e decide com o teu ouvido em vez da demo deles.", en: "No card needed. Generate your own sentence, in your own language, and decide with your ears instead of their demo." },
+      button: { pt: "Abrir o ElevenLabs →", en: "Open ElevenLabs →" },
+      note: { pt: "Link de afiliado. Não muda o preço que pagas.", en: "Affiliate link. Doesn't change the price you pay." },
+    },
+  },
 ];

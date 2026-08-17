@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Transcribe audio for free: Whisper and the alternatives | Antes de Assinares</title>
+  <meta name="description" content="Whisper, Parakeet, Canary and Moonshine: which to use for interviews, videos and meetings without sending anything to the cloud.">
+  <link rel="canonical" href="https://belialtheruler.github.io/antesdeassinares/en/guias/transcrever-sem-pagar.html">
+  <link rel="alternate" hreflang="pt-PT" href="https://belialtheruler.github.io/antesdeassinares/guias/transcrever-sem-pagar.html">
+  <link rel="alternate" hreflang="en" href="https://belialtheruler.github.io/antesdeassinares/en/guias/transcrever-sem-pagar.html">
+  <link rel="alternate" hreflang="x-default" href="https://belialtheruler.github.io/antesdeassinares/guias/transcrever-sem-pagar.html">
+  <meta property="og:title" content="Transcribe hours of audio at zero cost">
+  <meta property="og:description" content="Whisper, Parakeet, Canary and Moonshine: which to use for interviews, videos and meetings without sending anything to the cloud.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://belialtheruler.github.io/antesdeassinares/en/guias/transcrever-sem-pagar.html">
+  <meta property="og:locale" content="en">
+  <meta property="og:locale:alternate" content="pt_PT">
+  <meta property="og:image" content="https://belialtheruler.github.io/antesdeassinares/assets/og/og-default.png">
+  <link rel="stylesheet" href="../../assets/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤖</text></svg>">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Article","headline":"Transcribe audio for free: Whisper and the alternatives","description":"Whisper, Parakeet, Canary and Moonshine: which to use for interviews, videos and meetings without sending anything to the cloud.","datePublished":"2026-08-17","dateModified":"2026-08-17","inLanguage":"en","mainEntityOfPage":"https://belialtheruler.github.io/antesdeassinares/en/guias/transcrever-sem-pagar.html","image":"https://belialtheruler.github.io/antesdeassinares/assets/og/og-default.png","articleSection":"Guide","author":{"@type":"Organization","name":"Antes de Assinares","url":"https://belialtheruler.github.io/antesdeassinares/index.html"},"publisher":{"@type":"Organization","name":"Antes de Assinares","url":"https://belialtheruler.github.io/antesdeassinares/index.html"}}]}</script>
+</head>
+<body data-page="guias" data-lang="en">
+  <div data-header></div>
+
+  <main class="wrap article-layout">
+    <article class="prose">
+      <h1>Transcribe audio for free: Whisper and the alternatives</h1>
+      <p class="meta">Guide · Updated August 2026 · 6 min read</p>
+
+      <span class="disclosure">⚖️ This guide contains affiliate links — see our <a href="../sobre.html">policy</a>.</span>
+
+      <p>Transcription is one of the few categories where open source wins outright. The models are good, they run on ordinary machines, and the audio never leaves your computer — which matters if you're transcribing an interview or a client meeting.</p>
+
+      <aside class="verdict">
+        <h2 id="veredicto">Verdict</h2>
+        <p>For most people: Whisper large-v3 and be done with it. Fewest problems in Portuguese and it runs on modest hardware.</p>
+        <p>If you transcribe for a living and the volume is high, setting up Parakeet is worth the work.</p>
+      </aside>
+
+      <div class="placeholder-img" style="aspect-ratio: 16/6; background: linear-gradient(120deg, var(--ph-bg-a), var(--ph-bg-b)); display:flex; align-items:center; justify-content:center; color:var(--ph-fg); font-weight:700;">📷 Screenshot of the test (replace with your own image)</div>
+
+<h2 id="which-for-what">Which for what</h2>
+<ul>
+  <li><strong>Whisper large-v3</strong> — the all-rounder. If you want one choice and no more thinking, this is it. Handles Portuguese well.</li>
+  <li><strong>NVIDIA Parakeet TDT</strong> — fastest for volume. Hours of audio in one go is where this wins.</li>
+  <li><strong>NVIDIA Canary-Qwen 2.5B</strong> — most accurate in English. Not the obvious pick for Portuguese.</li>
+  <li><strong>Moonshine</strong> — built to run on-device, where there is no cloud. Phone, Raspberry Pi, offline.</li>
+</ul>
+<h2 id="why-this-matters-more-than-it-looks">Why this matters more than it looks</h2>
+<p>Commercial transcription services charge per minute and receive your audio. For a public interview that's fine. For a client meeting, a consultation, or a recording with personal data, it's a privacy decision — and GDPR doesn't like ambiguity there.</p>
+<p>Running the model locally solves both at once: cost and privacy.</p>
+<h2 id="our-test">Our test</h2>
+<p>⚠️ NOT YET TESTED. Plan: the same Portuguese recording through all four, with word error rate and processing time.</p>
+
+      <p class="muted" style="font-size:var(--t-body);"><em>Disclosure: this article has no affiliate links. All models are free.</em></p>
+
+      <nav class="related" aria-label="Keep deciding">
+        <h2>Keep deciding</h2>
+        <ul>
+          <li><a href="../guias/voiceover-com-ia.html"><span class="related-kind">Guide</span>AI voiceover, step by step</a></li>
+          <li><a href="../guias/elevenlabs-plano-gratis.html"><span class="related-kind">Guide</span>How far you get on ElevenLabs' 10k free credits</a></li>
+          <li><a href="../guias/correr-ia-no-portatil.html"><span class="related-kind">Guide</span>Run AI on your laptop: what you actually need</a></li>
+        </ul>
+      </nav>
+    </article>
+
+    <aside class="rail">
+      <nav class="toc" aria-label="Article contents">
+        <h2>In this article</h2>
+        <ul>
+          <li><a href="#veredicto">Verdict</a></li>
+        <li><a href="#which-for-what">Which for what</a></li>
+        <li><a href="#why-this-matters-more-than-it-looks">Why this matters more than it looks</a></li>
+        <li><a href="#our-test">Our test</a></li>
+        </ul>
+      </nav>
+    </aside>
+  </main>
+
+  <div data-footer></div>
+  <div id="cookie-banner" role="dialog" aria-label="Cookie consent">
+    <p>This site only uses technical cookies (localStorage). We don't load third-party trackers without your consent.</p>
+    <div class="row">
+      <button class="decline">Decline</button>
+      <button class="accept">Accept</button>
+    </div>
+  </div>
+  <script src="../../assets/affiliate-config.js"></script>
+  <script src="../../assets/layout.js"></script>
+  <script src="../../assets/affiliate-links.js"></script>
+  <script src="../../assets/i18n.js"></script>
+  <script src="../../assets/cookie-banner.js"></script>
+  <script src="../../assets/motion.js"></script>
+</body>
+</html>

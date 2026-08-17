@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Transcrever áudio sem pagar: Whisper e as alternativas | Antes de Assinares</title>
+  <meta name="description" content="Whisper, Parakeet, Canary e Moonshine: qual usar para transcrever entrevistas, vídeos e reuniões sem enviar nada para a nuvem.">
+  <link rel="canonical" href="https://belialtheruler.github.io/antesdeassinares/guias/transcrever-sem-pagar.html">
+  <link rel="alternate" hreflang="pt-PT" href="https://belialtheruler.github.io/antesdeassinares/guias/transcrever-sem-pagar.html">
+  <link rel="alternate" hreflang="en" href="https://belialtheruler.github.io/antesdeassinares/en/guias/transcrever-sem-pagar.html">
+  <link rel="alternate" hreflang="x-default" href="https://belialtheruler.github.io/antesdeassinares/guias/transcrever-sem-pagar.html">
+  <meta property="og:title" content="Transcrever horas de áudio a custo zero">
+  <meta property="og:description" content="Whisper, Parakeet, Canary e Moonshine: qual usar para transcrever entrevistas, vídeos e reuniões sem enviar nada para a nuvem.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://belialtheruler.github.io/antesdeassinares/guias/transcrever-sem-pagar.html">
+  <meta property="og:locale" content="pt_PT">
+  <meta property="og:locale:alternate" content="en">
+  <meta property="og:image" content="https://belialtheruler.github.io/antesdeassinares/assets/og/og-default.png">
+  <link rel="stylesheet" href="../assets/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤖</text></svg>">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Article","headline":"Transcrever áudio sem pagar: Whisper e as alternativas","description":"Whisper, Parakeet, Canary e Moonshine: qual usar para transcrever entrevistas, vídeos e reuniões sem enviar nada para a nuvem.","datePublished":"2026-08-17","dateModified":"2026-08-17","inLanguage":"pt-PT","mainEntityOfPage":"https://belialtheruler.github.io/antesdeassinares/guias/transcrever-sem-pagar.html","image":"https://belialtheruler.github.io/antesdeassinares/assets/og/og-default.png","articleSection":"Guia","author":{"@type":"Organization","name":"Antes de Assinares","url":"https://belialtheruler.github.io/antesdeassinares/index.html"},"publisher":{"@type":"Organization","name":"Antes de Assinares","url":"https://belialtheruler.github.io/antesdeassinares/index.html"}}]}</script>
+</head>
+<body data-page="guias">
+  <div data-header></div>
+
+  <main class="wrap article-layout">
+    <article class="prose">
+      <h1>Transcrever áudio sem pagar: Whisper e as alternativas</h1>
+      <p class="meta">Guia · Atualizado em agosto de 2026 · Leitura: 6 min</p>
+
+      <span class="disclosure">⚖️ Este guia contém links de afiliados — vê a nossa <a href="../sobre.html">política</a>.</span>
+
+      <p>Transcrição é das poucas categorias onde o open source ganha de forma limpa. Os modelos são bons, correm em máquina normal, e o áudio nunca sai do teu computador — o que interessa se estás a transcrever uma entrevista ou uma reunião de clientes.</p>
+
+      <aside class="verdict">
+        <h2 id="veredicto">Veredicto</h2>
+        <p>Para a maioria das pessoas: Whisper large-v3 e não se fala mais nisso. É o que dá menos problemas em português e corre em hardware modesto.</p>
+        <p>Se transcreves por profissão e o volume é grande, vale a pena o trabalho de montar o Parakeet.</p>
+      </aside>
+
+      <div class="placeholder-img" style="aspect-ratio: 16/6; background: linear-gradient(120deg, var(--ph-bg-a), var(--ph-bg-b)); display:flex; align-items:center; justify-content:center; color:var(--ph-fg); font-weight:700;">📷 Captura de ecrã do teste (substituir por imagem própria)</div>
+
+<h2 id="qual-para-que">Qual para quê</h2>
+<ul>
+  <li><strong>Whisper large-v3</strong> — o polivalente. Se só queres uma escolha e não queres pensar mais, é esta. Lida bem com português.</li>
+  <li><strong>NVIDIA Parakeet TDT</strong> — o mais rápido para volume. Se tens horas de áudio para processar de uma vez, é aqui que ganhas tempo.</li>
+  <li><strong>NVIDIA Canary-Qwen 2.5B</strong> — o mais preciso em inglês. Para português não é a escolha óbvia.</li>
+  <li><strong>Moonshine</strong> — feito para correr no dispositivo, onde não há nuvem nenhuma. Telemóvel, Raspberry Pi, offline.</li>
+</ul>
+<h2 id="porque-e-que-isto-importa-mais-do-que-parece">Porque é que isto importa mais do que parece</h2>
+<p>Os serviços comerciais de transcrição cobram por minuto e recebem o teu áudio. Para uma entrevista pública é indiferente. Para uma reunião com um cliente, uma consulta ou uma gravação com dados pessoais, é uma decisão de privacidade — e o RGPD não gosta de ambiguidade nesse ponto.</p>
+<p>Correr o modelo localmente resolve as duas coisas ao mesmo tempo: custo e privacidade.</p>
+<h2 id="o-nosso-teste">O nosso teste</h2>
+<p>⚠️ POR TESTAR. Plano: a mesma gravação em português nos quatro modelos, com taxa de erro por palavra e tempo de processamento.</p>
+
+      <p class="muted" style="font-size:var(--t-body);"><em>Disclosure: este artigo não tem links de afiliado. Todos os modelos são gratuitos.</em></p>
+
+      <nav class="related" aria-label="Continuar a decidir">
+        <h2>Continua a decidir</h2>
+        <ul>
+          <li><a href="../guias/voiceover-com-ia.html"><span class="related-kind">Guia</span>Voiceover com IA em português: guia passo a passo</a></li>
+          <li><a href="../guias/elevenlabs-plano-gratis.html"><span class="related-kind">Guia</span>Até onde chegas nos 10 mil créditos grátis do ElevenLabs</a></li>
+          <li><a href="../guias/correr-ia-no-portatil.html"><span class="related-kind">Guia</span>Correr IA no teu portátil: o que precisas mesmo</a></li>
+        </ul>
+      </nav>
+    </article>
+
+    <aside class="rail">
+      <nav class="toc" aria-label="Índice do artigo">
+        <h2>Neste artigo</h2>
+        <ul>
+          <li><a href="#veredicto">Veredicto</a></li>
+        <li><a href="#qual-para-que">Qual para quê</a></li>
+        <li><a href="#porque-e-que-isto-importa-mais-do-que-parece">Porque é que isto importa mais do que parece</a></li>
+        <li><a href="#o-nosso-teste">O nosso teste</a></li>
+        </ul>
+      </nav>
+    </aside>
+  </main>
+
+  <div data-footer></div>
+  <div id="cookie-banner" role="dialog" aria-label="Consentimento de cookies">
+    <p>Este site usa apenas cookies técnicos (localStorage). Não carregamos rastreadores de terceiros sem o teu consentimento.</p>
+    <div class="row">
+      <button class="decline">Recusar</button>
+      <button class="accept">Aceitar</button>
+    </div>
+  </div>
+  <script src="../assets/affiliate-config.js"></script>
+  <script src="../assets/layout.js"></script>
+  <script src="../assets/affiliate-links.js"></script>
+  <script src="../assets/i18n.js"></script>
+  <script src="../assets/cookie-banner.js"></script>
+  <script src="../assets/motion.js"></script>
+</body>
+</html>

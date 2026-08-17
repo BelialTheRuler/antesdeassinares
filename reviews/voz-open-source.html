@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Voz com IA open source: os modelos que valem a pena em 2026 | Antes de Assinares</title>
+  <meta name="description" content="Kokoro, Chatterbox, XTTS-v2 e Higgs Audio: o que faz cada um, que licença tem, e o problema sério de quem quer português de Portugal.">
+  <link rel="canonical" href="https://belialtheruler.github.io/antesdeassinares/reviews/voz-open-source.html">
+  <link rel="alternate" hreflang="pt-PT" href="https://belialtheruler.github.io/antesdeassinares/reviews/voz-open-source.html">
+  <link rel="alternate" hreflang="en" href="https://belialtheruler.github.io/antesdeassinares/en/reviews/voz-open-source.html">
+  <link rel="alternate" hreflang="x-default" href="https://belialtheruler.github.io/antesdeassinares/reviews/voz-open-source.html">
+  <meta property="og:title" content="Voz com IA sem pagar nada: os modelos abertos que valem a pena">
+  <meta property="og:description" content="Kokoro, Chatterbox, XTTS-v2 e Higgs Audio: o que faz cada um, que licença tem, e o problema sério de quem quer português de Portugal.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://belialtheruler.github.io/antesdeassinares/reviews/voz-open-source.html">
+  <meta property="og:locale" content="pt_PT">
+  <meta property="og:locale:alternate" content="en">
+  <meta property="og:image" content="https://belialtheruler.github.io/antesdeassinares/assets/og/og-default.png">
+  <link rel="stylesheet" href="../assets/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤖</text></svg>">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Article","headline":"Voz com IA open source: os modelos que valem a pena em 2026","description":"Kokoro, Chatterbox, XTTS-v2 e Higgs Audio: o que faz cada um, que licença tem, e o problema sério de quem quer português de Portugal.","datePublished":"2026-08-17","dateModified":"2026-08-17","inLanguage":"pt-PT","mainEntityOfPage":"https://belialtheruler.github.io/antesdeassinares/reviews/voz-open-source.html","image":"https://belialtheruler.github.io/antesdeassinares/assets/og/og-default.png","articleSection":"Comparação","author":{"@type":"Organization","name":"Antes de Assinares","url":"https://belialtheruler.github.io/antesdeassinares/index.html"},"publisher":{"@type":"Organization","name":"Antes de Assinares","url":"https://belialtheruler.github.io/antesdeassinares/index.html"}}]}</script>
+</head>
+<body data-page="reviews">
+  <div data-header></div>
+
+  <main class="wrap article-layout">
+    <article class="prose">
+      <h1>Voz com IA open source: os modelos que valem a pena em 2026</h1>
+      <p class="meta">Comparação · Atualizado em agosto de 2026 · Leitura: 8 min</p>
+
+      <span class="disclosure">⚖️ Este artigo contém links de afiliados — vê a nossa <a href="../sobre.html">política</a>.</span>
+
+      <p>Voz com IA deixou de ser caro. Há modelos abertos que corres na tua máquina, sem créditos, sem limite mensal e sem enviar o texto para servidor nenhum. O problema é outro: quase nenhum fala português de Portugal, e quem não souber isso à partida vai gastar uma tarde a descobri-lo.</p>
+
+      <aside class="verdict">
+        <h2 id="veredicto">Veredicto</h2>
+        <p>Se o teu conteúdo é em inglês e queres custo zero: Chatterbox pela licença MIT e pela clonagem, ou Kokoro se a máquina for fraca. Ambos resolvem.</p>
+        <p>Se o teu conteúdo é em português de Portugal, a resposta honesta é que o open source ainda não está lá. O caminho é XTTS-v2 com fine-tune, e dá trabalho. Para uso profissional em PT-PT uma ferramenta comercial ainda ganha, e dizemos qual em <a href="../reviews/elevenlabs.html">ElevenLabs em 2026</a>.</p>
+      </aside>
+
+      <div class="placeholder-img" style="aspect-ratio: 16/6; background: linear-gradient(120deg, var(--ph-bg-a), var(--ph-bg-b)); display:flex; align-items:center; justify-content:center; color:var(--ph-fg); font-weight:700;">📷 Captura de ecrã do teste (substituir por imagem própria)</div>
+
+<h2 id="o-problema-do-portugues-de-portugal">O problema do português de Portugal</h2>
+<p>Começamos por aqui porque é o que decide tudo o resto. As vozes em português de Portugal são raríssimas em modelos abertos: a esmagadora maioria do treino é em português do Brasil, que tem pronúncia, entoação e ritmo diferentes.</p>
+<p>O XTTS-v2, dos mais usados, tem viés forte para PT-BR. Existe na Hugging Face um fine-tune feito precisamente por causa disso, o <strong>xtts-v2-antonio-oliveira-pt-pt</strong>, e a sua existência é a melhor prova de que o problema é real.</p>
+<p>O Kokoro, o mais leve da lista, não tem <strong>nenhuma</strong> voz portuguesa. Traz pt-br apenas como fonemizador, o que significa ler português com uma voz que não é portuguesa. Se o teu público é de Portugal, ouve-se à primeira frase.</p>
+<h2 id="os-modelos-e-o-que-muda-entre-eles">Os modelos, e o que muda entre eles</h2>
+<ul>
+  <li><strong>Kokoro</strong> (82M parâmetros, Apache 2.0) — o mais leve. Corre em quase qualquer máquina, GPU opcional. Certo para narração rápida em inglês; para PT-PT não serve.</li>
+  <li><strong>Chatterbox</strong> (0.5B, MIT) — da Resemble AI. Clona uma voz a partir de poucos segundos e controla emoção. MIT é das licenças mais permissivas que existem, uso comercial incluído.</li>
+  <li><strong>XTTS-v2</strong> — clona voz em 17 línguas a partir de ~6 segundos de amostra. É o único com caminho realista para PT-PT, via fine-tune.</li>
+  <li><strong>Higgs Audio V2</strong> (~5.8B, Apache 2.0) — o mais natural e o mais pesado. Pede GPU a sério.</li>
+  <li><strong>Piper</strong> — nota de licença que muita gente não vê: a versão MIT original foi arquivada em outubro de 2025 e o desenvolvimento passou para o fork OHF-Voice/piper1-gpl, que é <strong>GPL-3.0</strong>. Não é a mesma conversa se pensas em uso comercial.</li>
+</ul>
+<h2 id="o-nosso-teste">O nosso teste</h2>
+<p>⚠️ POR TESTAR. O plano: a mesma frase em PT-PT nos quatro modelos, gravada e comparada lado a lado, com tempo de geração e hardware anotados. Enquanto este bloco disser POR TESTAR, o artigo não deve ser publicado.</p>
+<div class="pc">
+  <div class="pros">
+    <h3>Prós</h3>
+    <ul><li>Custo zero por caractere, para sempre</li>
+<li>O texto nunca sai da tua máquina</li>
+<li>Sem limite mensal de créditos</li>
+<li>Licenças permissivas em três dos quatro</li></ul>
+  </div>
+  <div class="cons">
+    <h3>Contras</h3>
+    <ul><li>Português de Portugal é o ponto fraco de toda a categoria</li>
+<li>Precisas de hardware, ou de o alugar</li>
+<li>Instalação e manutenção são contigo</li>
+<li>A gama emocional ainda fica atrás do topo comercial</li></ul>
+  </div>
+</div>
+<h2 id="e-se-nao-tenho-hardware">E se não tenho hardware?</h2>
+<p>É a objeção mais comum e tem resposta. Não precisas de comprar placa gráfica para experimentar: alugam-se GPUs à hora e, para testar um modelo de voz, falamos de cêntimos. O cálculo concreto está em <a href="../guias/correr-ia-no-portatil.html">Correr IA no teu portátil</a>.</p>
+
+      <p class="muted" style="font-size:var(--t-body);"><em>Disclosure: este artigo não tem links de afiliado. Os modelos abaixo são gratuitos e não pagam comissão a ninguém.</em></p>
+
+      <nav class="related" aria-label="Continuar a decidir">
+        <h2>Continua a decidir</h2>
+        <ul>
+          <li><a href="../reviews/planos-gratis.html"><span class="related-kind">Comparação</span>Os planos grátis de IA que valem a pena em 2026</a></li>
+          <li><a href="../reviews/video-ia-open-source.html"><span class="related-kind">Comparação</span>Vídeo com IA open source: vale a pena contra o HeyGen?</a></li>
+          <li><a href="../reviews/modelos-abertos-por-vram.html"><span class="related-kind">Comparação</span>Que modelo aberto para quê: um guia por VRAM</a></li>
+        </ul>
+      </nav>
+    </article>
+
+    <aside class="rail">
+      <nav class="toc" aria-label="Índice do artigo">
+        <h2>Neste artigo</h2>
+        <ul>
+          <li><a href="#veredicto">Veredicto</a></li>
+        <li><a href="#o-problema-do-portugues-de-portugal">O problema do português de Portugal</a></li>
+        <li><a href="#os-modelos-e-o-que-muda-entre-eles">Os modelos, e o que muda entre eles</a></li>
+        <li><a href="#o-nosso-teste">O nosso teste</a></li>
+        <li><a href="#e-se-nao-tenho-hardware">E se não tenho hardware?</a></li>
+        </ul>
+      </nav>
+    </aside>
+  </main>
+
+  <div data-footer></div>
+  <div id="cookie-banner" role="dialog" aria-label="Consentimento de cookies">
+    <p>Este site usa apenas cookies técnicos (localStorage). Não carregamos rastreadores de terceiros sem o teu consentimento.</p>
+    <div class="row">
+      <button class="decline">Recusar</button>
+      <button class="accept">Aceitar</button>
+    </div>
+  </div>
+  <script src="../assets/affiliate-config.js"></script>
+  <script src="../assets/layout.js"></script>
+  <script src="../assets/affiliate-links.js"></script>
+  <script src="../assets/i18n.js"></script>
+  <script src="../assets/cookie-banner.js"></script>
+  <script src="../assets/motion.js"></script>
+</body>
+</html>

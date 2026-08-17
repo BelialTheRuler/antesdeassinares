@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Que modelo aberto para quê: um guia por VRAM | Antes de Assinares</title>
+  <meta name="description" content="Ministral, gpt-oss, Qwen e GLM: qual corre na tua placa gráfica, com que licença, e para que serve cada um.">
+  <link rel="canonical" href="https://belialtheruler.github.io/antesdeassinares/reviews/modelos-abertos-por-vram.html">
+  <link rel="alternate" hreflang="pt-PT" href="https://belialtheruler.github.io/antesdeassinares/reviews/modelos-abertos-por-vram.html">
+  <link rel="alternate" hreflang="en" href="https://belialtheruler.github.io/antesdeassinares/en/reviews/modelos-abertos-por-vram.html">
+  <link rel="alternate" hreflang="x-default" href="https://belialtheruler.github.io/antesdeassinares/reviews/modelos-abertos-por-vram.html">
+  <meta property="og:title" content="O modelo aberto certo para a tua placa gráfica">
+  <meta property="og:description" content="Ministral, gpt-oss, Qwen e GLM: qual corre na tua placa gráfica, com que licença, e para que serve cada um.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://belialtheruler.github.io/antesdeassinares/reviews/modelos-abertos-por-vram.html">
+  <meta property="og:locale" content="pt_PT">
+  <meta property="og:locale:alternate" content="en">
+  <meta property="og:image" content="https://belialtheruler.github.io/antesdeassinares/assets/og/og-default.png">
+  <link rel="stylesheet" href="../assets/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤖</text></svg>">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Article","headline":"Que modelo aberto para quê: um guia por VRAM","description":"Ministral, gpt-oss, Qwen e GLM: qual corre na tua placa gráfica, com que licença, e para que serve cada um.","datePublished":"2026-08-17","dateModified":"2026-08-17","inLanguage":"pt-PT","mainEntityOfPage":"https://belialtheruler.github.io/antesdeassinares/reviews/modelos-abertos-por-vram.html","image":"https://belialtheruler.github.io/antesdeassinares/assets/og/og-default.png","articleSection":"Comparação","author":{"@type":"Organization","name":"Antes de Assinares","url":"https://belialtheruler.github.io/antesdeassinares/index.html"},"publisher":{"@type":"Organization","name":"Antes de Assinares","url":"https://belialtheruler.github.io/antesdeassinares/index.html"}}]}</script>
+</head>
+<body data-page="reviews">
+  <div data-header></div>
+
+  <main class="wrap article-layout">
+    <article class="prose">
+      <h1>Que modelo aberto para quê: um guia por VRAM</h1>
+      <p class="meta">Comparação · Atualizado em agosto de 2026 · Leitura: 6 min</p>
+
+      <span class="disclosure">⚖️ Este artigo contém links de afiliados — vê a nossa <a href="../sobre.html">política</a>.</span>
+
+      <p>A pergunta útil não é «qual é o melhor modelo aberto». É «qual é o melhor que corre na minha máquina». São perguntas diferentes e a segunda é a única que te muda o dia.</p>
+
+      <aside class="verdict">
+        <h2 id="veredicto">Veredicto</h2>
+        <p>Se tens 16 GB, o gpt-oss-20b é o sítio certo para começar. Não persigas o topo da tabela de benchmarks: esses modelos não correm onde tu estás, e o que corre já resolve a maioria do trabalho.</p>
+        <p>Não sabes quanta VRAM tens? Está explicado em <a href="../guias/correr-ia-no-portatil.html">Correr IA no teu portátil</a>.</p>
+      </aside>
+
+      <div class="placeholder-img" style="aspect-ratio: 16/6; background: linear-gradient(120deg, var(--ph-bg-a), var(--ph-bg-b)); display:flex; align-items:center; justify-content:center; color:var(--ph-fg); font-weight:700;">📷 Captura de ecrã do teste (substituir por imagem própria)</div>
+
+<h2 id="a-tabela">A tabela</h2>
+<ul>
+  <li><strong>12 GB de VRAM</strong> — Ministral 3 8B, Apache 2.0. O ponto de entrada para texto que serve para alguma coisa.</li>
+  <li><strong>16 GB</strong> — gpt-oss-20b, Apache 2.0. É o alvo da maioria das pessoas e onde a relação qualidade/hardware é melhor.</li>
+  <li><strong>24 GB ou mais</strong> — Qwen3 VL 32B, Apache 2.0. Multimodal, vê imagens.</li>
+  <li><strong>Topo, e fora de alcance doméstico</strong> — GLM 5.2 e as versões Max. Batem modelos fechados em benchmarks, mas pedem centenas de gigabytes.</li>
+</ul>
+<h2 id="porque-e-que-apache-2-0-importa">Porque é que Apache 2.0 importa</h2>
+<p>Todos os modelos acima são Apache 2.0, o que quer dizer uso comercial sem pedir licença a ninguém. Não é detalhe: há modelos populares com licenças que proíbem exatamente aquilo que a maioria das pessoas quer fazer. Lê sempre a licença antes de construir por cima.</p>
+<h2 id="o-nosso-teste">O nosso teste</h2>
+<p>⚠️ POR TESTAR. Plano: o mesmo prompt nos três modelos que cabem em hardware doméstico, com tokens por segundo e qualidade da resposta em português.</p>
+
+      <p class="muted" style="font-size:var(--t-body);"><em>Disclosure: este artigo não tem links de afiliado. Todos os modelos são gratuitos.</em></p>
+
+      <nav class="related" aria-label="Continuar a decidir">
+        <h2>Continua a decidir</h2>
+        <ul>
+          <li><a href="../reviews/planos-gratis.html"><span class="related-kind">Comparação</span>Os planos grátis de IA que valem a pena em 2026</a></li>
+          <li><a href="../reviews/video-ia-open-source.html"><span class="related-kind">Comparação</span>Vídeo com IA open source: vale a pena contra o HeyGen?</a></li>
+          <li><a href="../reviews/voz-open-source.html"><span class="related-kind">Comparação</span>Voz com IA open source: os modelos que valem a pena em 2026</a></li>
+        </ul>
+      </nav>
+    </article>
+
+    <aside class="rail">
+      <nav class="toc" aria-label="Índice do artigo">
+        <h2>Neste artigo</h2>
+        <ul>
+          <li><a href="#veredicto">Veredicto</a></li>
+        <li><a href="#a-tabela">A tabela</a></li>
+        <li><a href="#porque-e-que-apache-2-0-importa">Porque é que Apache 2.0 importa</a></li>
+        <li><a href="#o-nosso-teste">O nosso teste</a></li>
+        </ul>
+      </nav>
+    </aside>
+  </main>
+
+  <div data-footer></div>
+  <div id="cookie-banner" role="dialog" aria-label="Consentimento de cookies">
+    <p>Este site usa apenas cookies técnicos (localStorage). Não carregamos rastreadores de terceiros sem o teu consentimento.</p>
+    <div class="row">
+      <button class="decline">Recusar</button>
+      <button class="accept">Aceitar</button>
+    </div>
+  </div>
+  <script src="../assets/affiliate-config.js"></script>
+  <script src="../assets/layout.js"></script>
+  <script src="../assets/affiliate-links.js"></script>
+  <script src="../assets/i18n.js"></script>
+  <script src="../assets/cookie-banner.js"></script>
+  <script src="../assets/motion.js"></script>
+</body>
+</html>

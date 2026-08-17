@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Run AI on your laptop: what you actually need | Antes de Assinares</title>
+  <meta name="description" content="How much VRAM you need, what 4-bit quantisation is, and what it costs to rent a GPU by the hour instead of buying one.">
+  <link rel="canonical" href="https://belialtheruler.github.io/antesdeassinares/en/guias/correr-ia-no-portatil.html">
+  <link rel="alternate" hreflang="pt-PT" href="https://belialtheruler.github.io/antesdeassinares/guias/correr-ia-no-portatil.html">
+  <link rel="alternate" hreflang="en" href="https://belialtheruler.github.io/antesdeassinares/en/guias/correr-ia-no-portatil.html">
+  <link rel="alternate" hreflang="x-default" href="https://belialtheruler.github.io/antesdeassinares/guias/correr-ia-no-portatil.html">
+  <meta property="og:title" content="Do you really need a data center to run AI? No.">
+  <meta property="og:description" content="How much VRAM you need, what 4-bit quantisation is, and what it costs to rent a GPU by the hour instead of buying one.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://belialtheruler.github.io/antesdeassinares/en/guias/correr-ia-no-portatil.html">
+  <meta property="og:locale" content="en">
+  <meta property="og:locale:alternate" content="pt_PT">
+  <meta property="og:image" content="https://belialtheruler.github.io/antesdeassinares/assets/og/og-default.png">
+  <link rel="stylesheet" href="../../assets/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤖</text></svg>">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Article","headline":"Run AI on your laptop: what you actually need","description":"How much VRAM you need, what 4-bit quantisation is, and what it costs to rent a GPU by the hour instead of buying one.","datePublished":"2026-08-17","dateModified":"2026-08-17","inLanguage":"en","mainEntityOfPage":"https://belialtheruler.github.io/antesdeassinares/en/guias/correr-ia-no-portatil.html","image":"https://belialtheruler.github.io/antesdeassinares/assets/og/og-default.png","articleSection":"Guide","author":{"@type":"Organization","name":"Antes de Assinares","url":"https://belialtheruler.github.io/antesdeassinares/index.html"},"publisher":{"@type":"Organization","name":"Antes de Assinares","url":"https://belialtheruler.github.io/antesdeassinares/index.html"}}]}</script>
+</head>
+<body data-page="guias" data-lang="en">
+  <div data-header></div>
+
+  <main class="wrap article-layout">
+    <article class="prose">
+      <h1>Run AI on your laptop: what you actually need</h1>
+      <p class="meta">Guide · Updated August 2026 · 7 min read</p>
+
+      <span class="disclosure">⚖️ This guide contains affiliate links — see our <a href="../sobre.html">policy</a>.</span>
+
+      <p>Every time a new open model lands, the top comment is the same: "now all I need is a data center". It's half true. The big version of any model is impossible at home; the version that matters usually fits.</p>
+
+      <aside class="verdict">
+        <h2 id="veredicto">Verdict</h2>
+        <p>If you have 16 GB of VRAM you can run almost everything that matters today. If you don't, rent an hour before spending a euro on hardware.</p>
+        <p>And if the conclusion is that none of this is worth it for your case, that's an answer too — and one this site would rather give than push you into a purchase.</p>
+      </aside>
+
+      <div class="placeholder-img" style="aspect-ratio: 16/6; background: linear-gradient(120deg, var(--ph-bg-a), var(--ph-bg-b)); display:flex; align-items:center; justify-content:center; color:var(--ph-fg); font-weight:700;">📷 Screenshot of the test (replace with your own image)</div>
+
+<h2 id="the-rule-vram-decides">The rule: VRAM decides</h2>
+<p>It isn't the processor or system RAM. What decides whether a model runs is graphics card memory, VRAM. If the model doesn't fit, it either won't start or it crawls.</p>
+<p>The trick that makes this possible is <strong>quantisation</strong>: storing the model's weights at lower precision, typically 4 bits instead of 16. Little quality is lost and the size drops to roughly a quarter.</p>
+<h2 id="what-fits-where">What fits where</h2>
+<ul>
+  <li><strong>8 GB VRAM</strong> — small models and voice. Kokoro runs without a dedicated GPU at all.</li>
+  <li><strong>12 GB</strong> — Ministral 3 8B in 4-bit. The realistic entry point for useful text.</li>
+  <li><strong>16 GB</strong> — gpt-oss-20b. This is where most people want to land.</li>
+  <li><strong>24 GB or more</strong> — Qwen3 VL 32B and friends. Expensive dedicated card territory.</li>
+  <li><strong>Above that</strong> — the "Max" versions with hundreds of billions of parameters need 400 GB+. Those aren't for you, and that's fine.</li>
+</ul>
+<h2 id="rent-instead-of-buying">Rent instead of buying</h2>
+<p>A 16 GB card costs hundreds. An hour of cloud GPU costs cents, and for trying a model that's all you need. If after testing you find you use it daily, then buy — but by then you know exactly which one.</p>
+<p>It's also the honest way to write about this: we don't tell people to buy hardware before they know they'll use it.</p>
+<h2 id="our-test">Our test</h2>
+<p>⚠️ NOT YET TESTED. Plan: run the same model in 4-bit on a specific machine and record load time, tokens per second and VRAM used. Without those numbers this article is theory.</p>
+
+      <p class="muted" style="font-size:var(--t-body);"><em>Disclosure: no affiliate links for the models here, because they're free. If we recommend a GPU rental service the link will be an affiliate one and will be marked as such.</em></p>
+
+      <nav class="related" aria-label="Keep deciding">
+        <h2>Keep deciding</h2>
+        <ul>
+          <li><a href="../guias/voiceover-com-ia.html"><span class="related-kind">Guide</span>AI voiceover, step by step</a></li>
+          <li><a href="../guias/elevenlabs-plano-gratis.html"><span class="related-kind">Guide</span>How far you get on ElevenLabs' 10k free credits</a></li>
+          <li><a href="../guias/transcrever-sem-pagar.html"><span class="related-kind">Guide</span>Transcribe audio for free: Whisper and the alternatives</a></li>
+        </ul>
+      </nav>
+    </article>
+
+    <aside class="rail">
+      <nav class="toc" aria-label="Article contents">
+        <h2>In this article</h2>
+        <ul>
+          <li><a href="#veredicto">Verdict</a></li>
+        <li><a href="#the-rule-vram-decides">The rule: VRAM decides</a></li>
+        <li><a href="#what-fits-where">What fits where</a></li>
+        <li><a href="#rent-instead-of-buying">Rent instead of buying</a></li>
+        <li><a href="#our-test">Our test</a></li>
+        </ul>
+      </nav>
+    </aside>
+  </main>
+
+  <div data-footer></div>
+  <div id="cookie-banner" role="dialog" aria-label="Cookie consent">
+    <p>This site only uses technical cookies (localStorage). We don't load third-party trackers without your consent.</p>
+    <div class="row">
+      <button class="decline">Decline</button>
+      <button class="accept">Accept</button>
+    </div>
+  </div>
+  <script src="../../assets/affiliate-config.js"></script>
+  <script src="../../assets/layout.js"></script>
+  <script src="../../assets/affiliate-links.js"></script>
+  <script src="../../assets/i18n.js"></script>
+  <script src="../../assets/cookie-banner.js"></script>
+  <script src="../../assets/motion.js"></script>
+</body>
+</html>
